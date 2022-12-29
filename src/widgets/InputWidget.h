@@ -8,6 +8,14 @@
 class InputWidget : public QWidget
 {
     Q_OBJECT
+private:
+    QLineEdit *hoursEdit = nullptr,
+              *minsEdit  = nullptr,
+              *secsEdit  = nullptr;
+
+    void initWidgets();
+    void initLayout();
+
 public:
     explicit InputWidget(QWidget *parent = nullptr);
 

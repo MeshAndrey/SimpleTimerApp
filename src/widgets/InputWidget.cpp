@@ -2,6 +2,19 @@
 
 InputWidget::InputWidget(QWidget *parent) : QWidget(parent)
 {
+    initWidgets();
+    initLayout();
+}
+
+void InputWidget::initWidgets()
+{
+    hoursEdit = new QLineEdit;
+    minsEdit  = new QLineEdit;
+    secsEdit  = new QLineEdit;
+}
+
+void InputWidget::initLayout()
+{
     QVBoxLayout *verLayout = new QVBoxLayout;
     QHBoxLayout *topHorLayout = new QHBoxLayout;
     QGridLayout *gridLayout = new QGridLayout;
@@ -17,16 +30,16 @@ InputWidget::InputWidget(QWidget *parent) : QWidget(parent)
                     this, &InputWidget::buttonClicked);
         }
     }
+
     QPushButton* zeroButton = new QPushButton("0");
     gridLayout->addWidget(zeroButton, 3, 1);
     connect(zeroButton, &QPushButton::clicked,
             this, &InputWidget::buttonClicked);
-
-    topHorLayout->addWidget(new QLineEdit);
+    topHorLayout->addWidget(hoursEdit);
     topHorLayout->addWidget(new QLabel("H"));
-    topHorLayout->addWidget(new QLineEdit);
+    topHorLayout->addWidget(minsEdit);
     topHorLayout->addWidget(new QLabel("Min"));
-    topHorLayout->addWidget(new QLineEdit);
+    topHorLayout->addWidget(secsEdit);
     topHorLayout->addWidget(new QLabel("Sec"));
 
     verLayout->addLayout(topHorLayout);
