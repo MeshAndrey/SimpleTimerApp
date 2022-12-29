@@ -13,9 +13,14 @@ InputWidget::InputWidget(QWidget *parent) : QWidget(parent)
         {
             QPushButton * btn = new QPushButton(QString::number(++buttonCounter));
             gridLayout->addWidget(btn, row, column);
+            connect(btn, &QPushButton::clicked,
+                    this, &InputWidget::buttonClicked);
         }
     }
-    gridLayout->addWidget(new QPushButton("0"), 3, 1);
+    QPushButton* zeroButton = new QPushButton("0");
+    gridLayout->addWidget(zeroButton, 3, 1);
+    connect(zeroButton, &QPushButton::clicked,
+            this, &InputWidget::buttonClicked);
 
     topHorLayout->addWidget(new QLineEdit);
     topHorLayout->addWidget(new QLabel("H"));
@@ -29,3 +34,11 @@ InputWidget::InputWidget(QWidget *parent) : QWidget(parent)
 
     setLayout(verLayout);
 }
+
+void InputWidget::buttonClicked()
+{
+    QMessageBox msg;
+    msg.setText(((QPushButton*)sender())->text());
+    msg.exec();
+}
+

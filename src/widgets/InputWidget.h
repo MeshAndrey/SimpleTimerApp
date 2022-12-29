@@ -11,8 +11,8 @@ class InputWidget : public QWidget
 public:
     explicit InputWidget(QWidget *parent = nullptr);
 
-signals:
-
+private slots:
+    void buttonClicked();
 };
 
 #endif // INPUTWIDGET_H
