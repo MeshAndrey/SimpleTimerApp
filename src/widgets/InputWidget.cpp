@@ -84,6 +84,19 @@ void InputWidget::showMessageBox(QString message)
 
 void InputWidget::buttonClicked()
 {
-    showMessageBox(((QPushButton*)sender())->text());
+    QString digit = ((QPushButton*)sender())->text();
+
+    if (secsEdit->text().length() < 2)
+    {
+        secsEdit->setText(secsEdit->text() + digit);
+    }
+    else if (minsEdit->text().length() < 2)
+    {
+        minsEdit->setText(minsEdit->text() + digit);
+    }
+    else if (hoursEdit->text().length() < 2)
+    {
+        hoursEdit->setText(hoursEdit->text() + digit);
+    }
 }
 
