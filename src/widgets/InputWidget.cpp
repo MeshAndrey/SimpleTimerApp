@@ -64,7 +64,9 @@ void InputWidget::initLayout()
 
 void InputWidget::deleteButtonClicked()
 {
-    showMessageBox("Delete button pressed");
+    secsEdit->setText("");
+    minsEdit->setText("");
+    hoursEdit->setText("");
 }
 
 void InputWidget::okButtonClicked()
