@@ -18,6 +18,7 @@ void InputWidget::initLayout()
     QVBoxLayout *verLayout = new QVBoxLayout;
     QHBoxLayout *topHorLayout = new QHBoxLayout;
     QGridLayout *gridLayout = new QGridLayout;
+    QHBoxLayout *bottomHorLayout = new QHBoxLayout;
 
     int buttonCounter = 0;
     for (int row = 0; row < 3 ; row++)
@@ -42,8 +43,12 @@ void InputWidget::initLayout()
     topHorLayout->addWidget(secsEdit);
     topHorLayout->addWidget(new QLabel("Sec"));
 
+    bottomHorLayout->addWidget(new QPushButton("Delete"));
+    bottomHorLayout->addWidget(new QPushButton("Ok"));
+
     verLayout->addLayout(topHorLayout);
     verLayout->addLayout(gridLayout);
+    verLayout->addLayout(bottomHorLayout);
 
     setLayout(verLayout);
 }
