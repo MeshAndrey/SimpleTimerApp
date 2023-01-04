@@ -39,6 +39,7 @@ void InputWidget::initLayout()
     gridLayout->addWidget(zeroButton, 3, 1);
     connect(zeroButton, &QPushButton::clicked,
             this, &InputWidget::buttonClicked);
+
     topHorLayout->addWidget(hoursEdit);
     topHorLayout->addWidget(new QLabel("H"));
     topHorLayout->addWidget(minsEdit);
@@ -49,6 +50,11 @@ void InputWidget::initLayout()
     bottomHorLayout->addWidget(deleteButton);
     bottomHorLayout->addWidget(okButton);
 
+    connect(deleteButton, &QPushButton::clicked,
+            this, &InputWidget::deleteButtonClicked);
+    connect(okButton, &QPushButton::clicked,
+            this, &InputWidget::okButtonClicked);
+
     verLayout->addLayout(topHorLayout);
     verLayout->addLayout(gridLayout);
     verLayout->addLayout(bottomHorLayout);
@@ -56,10 +62,28 @@ void InputWidget::initLayout()
     setLayout(verLayout);
 }
 
+void InputWidget::deleteButtonClicked()
+{
+    showMessageBox("Delete button pressed");
+}
+
+void InputWidget::okButtonClicked()
+{
+    showMessageBox("Ok button pressed");
+}
+
+void InputWidget::showMessageBox(QString message)
+{
+    if (message.isEmpty())
+        return;
+
+    QMessageBox msg;
+    msg.setText(message);
+    msg.exec();
+}
+
 void InputWidget::buttonClicked()
 {
-    QMessageBox msg;
-    msg.setText(((QPushButton*)sender())->text());
-    msg.exec();
+    showMessageBox(((QPushButton*)sender())->text());
 }
 

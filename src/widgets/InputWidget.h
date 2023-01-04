@@ -17,12 +17,15 @@ private:
 
     void initWidgets();
     void initLayout();
+    void showMessageBox(QString message);
 
 public:
     explicit InputWidget(QWidget *parent = nullptr);
 
 private slots:
     void buttonClicked();
+    void deleteButtonClicked();
+    void okButtonClicked();
 };
 
 #endif // INPUTWIDGET_H
