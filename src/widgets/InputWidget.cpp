@@ -111,6 +111,9 @@ void InputWidget::buttonClicked()
 
 void InputWidget::textEdited(const QString &text)
 {
-    showMessageBox(text);
+    if (text.length() > 2)
+    {
+        ((QLineEdit*)sender())->setText(QStringRef(&text, 0, 2).toString());
+    }
 }
 
