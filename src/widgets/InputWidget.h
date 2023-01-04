@@ -26,6 +26,7 @@ private slots:
     void buttonClicked();
     void deleteButtonClicked();
     void okButtonClicked();
+    void textEdited(const QString &text);
 };
 
 #endif // INPUTWIDGET_H

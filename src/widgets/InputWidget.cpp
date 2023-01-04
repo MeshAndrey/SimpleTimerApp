@@ -47,6 +47,13 @@ void InputWidget::initLayout()
     topHorLayout->addWidget(secsEdit);
     topHorLayout->addWidget(new QLabel("Sec"));
 
+    connect(hoursEdit, &QLineEdit::textEdited,
+            this, &InputWidget::textEdited);
+    connect(minsEdit, &QLineEdit::textEdited,
+            this, &InputWidget::textEdited);
+    connect(secsEdit, &QLineEdit::textEdited,
+            this, &InputWidget::textEdited);
+
     bottomHorLayout->addWidget(deleteButton);
     bottomHorLayout->addWidget(okButton);
 
@@ -100,5 +107,10 @@ void InputWidget::buttonClicked()
     {
         hoursEdit->setText(hoursEdit->text() + digit);
     }
+}
+
+void InputWidget::textEdited(const QString &text)
+{
+    showMessageBox(text);
 }
 
