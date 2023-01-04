@@ -12,6 +12,8 @@ private:
     QLineEdit *hoursEdit = nullptr,
               *minsEdit  = nullptr,
               *secsEdit  = nullptr;
+    QPushButton *deleteButton = nullptr,
+                *okButton     = nullptr;
 
     void initWidgets();
     void initLayout();

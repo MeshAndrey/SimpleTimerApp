@@ -11,6 +11,9 @@ void InputWidget::initWidgets()
     hoursEdit = new QLineEdit;
     minsEdit  = new QLineEdit;
     secsEdit  = new QLineEdit;
+
+    deleteButton = new QPushButton("Delete");
+    okButton = new QPushButton("Ok");
 }
 
 void InputWidget::initLayout()
@@ -43,8 +46,8 @@ void InputWidget::initLayout()
     topHorLayout->addWidget(secsEdit);
     topHorLayout->addWidget(new QLabel("Sec"));
 
-    bottomHorLayout->addWidget(new QPushButton("Delete"));
-    bottomHorLayout->addWidget(new QPushButton("Ok"));
+    bottomHorLayout->addWidget(deleteButton);
+    bottomHorLayout->addWidget(okButton);
 
     verLayout->addLayout(topHorLayout);
     verLayout->addLayout(gridLayout);
