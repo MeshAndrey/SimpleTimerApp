@@ -13,6 +13,11 @@ TimerWidget::TimerWidget(QWidget *parent) : QWidget(parent)
     layout->addWidget(remainingTimeLabel);
     layout->addLayout(horLayout);
 
+    connect(pauseResumeButton, &QPushButton::clicked,
+            this, &TimerWidget::pauseResumeButtonCLicked);
+    connect(stopButton, &QPushButton::clicked,
+            this, &TimerWidget::stopButtonClicked);
+
     setLayout(layout);
 }
 
@@ -24,4 +29,24 @@ void TimerWidget::allocateMemory()
 
     timer = new QTimer;
     updateTimer = new QTimer;
+}
+
+void TimerWidget::pauseResumeButtonCLicked()
+{
+    showMessageBox("Pause button clicked");
+}
+
+void TimerWidget::stopButtonClicked()
+{
+    showMessageBox("Stop button clicked");
+}
+
+void TimerWidget::showMessageBox(QString message)
+{
+    if (message.isEmpty())
+        return;
+
+    QMessageBox msg;
+    msg.setText(message);
+    msg.exec();
 }

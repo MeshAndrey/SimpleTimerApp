@@ -16,6 +16,13 @@ private:
     QTimer *timer       = nullptr,
            *updateTimer = nullptr;
 
+    void allocateMemory();
+    void showMessageBox(QString message);
+
+private slots:
+    void pauseResumeButtonCLicked();
+    void stopButtonClicked();
+
 public:
     explicit TimerWidget(QWidget *parent = nullptr);
 
