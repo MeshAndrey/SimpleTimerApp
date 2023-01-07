@@ -80,6 +80,11 @@ void InputWidget::deleteButtonClicked()
 
 void InputWidget::okButtonClicked()
 {
+    if (secsEdit->text().isEmpty() &&
+        minsEdit->text().isEmpty() &&
+        hoursEdit->text().isEmpty())
+        return;
+
     this->close();
     ((MainWindow*)parent())->setCentralWidget(new TimerWidget);
 }
