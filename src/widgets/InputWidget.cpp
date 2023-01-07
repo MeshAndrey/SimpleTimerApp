@@ -1,4 +1,6 @@
 #include "InputWidget.h"
+#include "../MainWindow.h"
+#include "TimerWidget.h"
 
 InputWidget::InputWidget(QWidget *parent) : QWidget(parent)
 {
@@ -78,7 +80,8 @@ void InputWidget::deleteButtonClicked()
 
 void InputWidget::okButtonClicked()
 {
-    showMessageBox("Ok button pressed");
+    this->close();
+    ((MainWindow*)parent())->setCentralWidget(new TimerWidget);
 }
 
 void InputWidget::showMessageBox(QString message)
