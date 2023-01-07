@@ -18,6 +18,7 @@ private:
 
     void allocateMemory();
     void showMessageBox(QString message);
+    void makeConnections();
     int round(int value);
 
 private slots:

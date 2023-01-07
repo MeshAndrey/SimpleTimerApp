@@ -6,17 +6,13 @@ TimerWidget::TimerWidget(int timerValue, QWidget *parent) : QWidget(parent)
     QHBoxLayout * horLayout = new QHBoxLayout;
 
     allocateMemory();
+    makeConnections();
 
     horLayout->addWidget(pauseResumeButton);
     horLayout->addWidget(stopButton);
 
     layout->addWidget(remainingTimeLabel, 0, Qt::AlignCenter);
     layout->addLayout(horLayout);
-
-    connect(pauseResumeButton, &QPushButton::clicked,
-            this, &TimerWidget::pauseResumeButtonCLicked);
-    connect(stopButton, &QPushButton::clicked,
-            this, &TimerWidget::stopButtonClicked);
 
     timer->setSingleShot(true);
     timer->setInterval(timerValue);
@@ -27,10 +23,6 @@ TimerWidget::TimerWidget(int timerValue, QWidget *parent) : QWidget(parent)
     updateTimer->start();
 
     remainingTimeLabel->setText(QString::number(timerValue));
-
-    connect(timer, &QTimer::timeout, this, &TimerWidget::timerTimeout);
-    connect(updateTimer, &QTimer::timeout,
-            this, &TimerWidget::updateTimerTimeout);
 
     setLayout(layout);
 }
@@ -43,6 +35,18 @@ void TimerWidget::allocateMemory()
 
     timer = new QTimer;
     updateTimer = new QTimer;
+}
+
+void TimerWidget::makeConnections()
+{
+    connect(pauseResumeButton, &QPushButton::clicked,
+            this, &TimerWidget::pauseResumeButtonCLicked);
+    connect(stopButton, &QPushButton::clicked,
+            this, &TimerWidget::stopButtonClicked);
+
+    connect(timer, &QTimer::timeout, this, &TimerWidget::timerTimeout);
+    connect(updateTimer, &QTimer::timeout,
+            this, &TimerWidget::updateTimerTimeout);
 }
 
 void TimerWidget::pauseResumeButtonCLicked()
