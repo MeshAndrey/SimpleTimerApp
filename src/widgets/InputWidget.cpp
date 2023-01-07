@@ -86,7 +86,7 @@ void InputWidget::okButtonClicked()
         return;
 
     this->close();
-    ((MainWindow*)parent())->setCentralWidget(new TimerWidget);
+    ((MainWindow*)parent())->setCentralWidget(new TimerWidget(10000));
 }
 
 void InputWidget::showMessageBox(QString message)

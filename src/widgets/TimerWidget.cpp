@@ -1,6 +1,6 @@
 #include "TimerWidget.h"
 
-TimerWidget::TimerWidget(QWidget *parent) : QWidget(parent)
+TimerWidget::TimerWidget(int timerValue, QWidget *parent) : QWidget(parent)
 {
     QVBoxLayout * layout = new QVBoxLayout;
     QHBoxLayout * horLayout = new QHBoxLayout;
@@ -19,10 +19,11 @@ TimerWidget::TimerWidget(QWidget *parent) : QWidget(parent)
             this, &TimerWidget::stopButtonClicked);
 
     timer->setSingleShot(true);
-    timer->setInterval(20000);
-    timer->start();
+    timer->setInterval(timerValue);
 
     updateTimer->setInterval(1000);
+
+    timer->start();
     updateTimer->start();
 
     connect(timer, &QTimer::timeout, this, &TimerWidget::timerTimeout);

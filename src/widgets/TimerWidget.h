@@ -27,7 +27,7 @@ private slots:
     void updateTimerTimeout();
 
 public:
-    explicit TimerWidget(QWidget *parent = nullptr);
+    explicit TimerWidget(int timerValue, QWidget *parent = nullptr);
 
 signals:
 
