@@ -13,7 +13,7 @@ private:
     QPushButton *pauseResumeButton = nullptr,
                 *stopButton        = nullptr;
 
-    QTimer *timer = nullptr,
+    QTimer *timer       = nullptr,
            *updateTimer = nullptr;
 
 public:
