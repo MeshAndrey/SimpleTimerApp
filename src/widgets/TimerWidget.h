@@ -18,11 +18,13 @@ private:
 
     void allocateMemory();
     void showMessageBox(QString message);
+    int round(int value);
 
 private slots:
     void pauseResumeButtonCLicked();
     void stopButtonClicked();
     void timerTimeout();
+    void updateTimerTimeout();
 
 public:
     explicit TimerWidget(QWidget *parent = nullptr);
