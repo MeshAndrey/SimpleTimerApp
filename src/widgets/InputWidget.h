@@ -18,6 +18,7 @@ private:
     void initWidgets();
     void initLayout();
     void showMessageBox(QString message);
+    int getTimerValue();
 
 public:
     explicit InputWidget(QWidget *parent = nullptr);

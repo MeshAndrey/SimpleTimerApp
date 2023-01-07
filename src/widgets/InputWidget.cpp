@@ -85,8 +85,27 @@ void InputWidget::okButtonClicked()
         hoursEdit->text().isEmpty())
         return;
 
+    int timerValue = getTimerValue();
+
     this->close();
-    ((MainWindow*)parent())->setCentralWidget(new TimerWidget(10000));
+    ((MainWindow*)parent())->setCentralWidget(new TimerWidget(timerValue));
+}
+
+int InputWidget::getTimerValue()
+{
+    if (secsEdit->text().isEmpty() &&
+        minsEdit->text().isEmpty() &&
+        hoursEdit->text().isEmpty())
+        return 0;
+
+    int s = secsEdit->text().toInt();
+    int m = minsEdit->text().toInt();
+    int h = hoursEdit->text().toInt();
+
+    int timerValue = s * 1000 + m * 60 * 1000 + h * 60 * 60 * 1000;
+    showMessageBox(QString::number(timerValue));
+
+    return timerValue;
 }
 
 void InputWidget::showMessageBox(QString message)
