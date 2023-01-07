@@ -10,7 +10,7 @@ TimerWidget::TimerWidget(int timerValue, QWidget *parent) : QWidget(parent)
     horLayout->addWidget(pauseResumeButton);
     horLayout->addWidget(stopButton);
 
-    layout->addWidget(remainingTimeLabel);
+    layout->addWidget(remainingTimeLabel, 0, Qt::AlignCenter);
     layout->addLayout(horLayout);
 
     connect(pauseResumeButton, &QPushButton::clicked,
