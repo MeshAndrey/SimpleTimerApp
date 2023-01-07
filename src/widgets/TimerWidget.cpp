@@ -26,6 +26,8 @@ TimerWidget::TimerWidget(int timerValue, QWidget *parent) : QWidget(parent)
     timer->start();
     updateTimer->start();
 
+    remainingTimeLabel->setText(QString::number(timerValue));
+
     connect(timer, &QTimer::timeout, this, &TimerWidget::timerTimeout);
     connect(updateTimer, &QTimer::timeout,
             this, &TimerWidget::updateTimerTimeout);
