@@ -18,6 +18,12 @@ TimerWidget::TimerWidget(QWidget *parent) : QWidget(parent)
     connect(stopButton, &QPushButton::clicked,
             this, &TimerWidget::stopButtonClicked);
 
+    timer->setSingleShot(true);
+    timer->setInterval(3000);
+    timer->start();
+
+    connect(timer, &QTimer::timeout, this, &TimerWidget::timerTimeout);
+
     setLayout(layout);
 }
 
@@ -39,6 +45,11 @@ void TimerWidget::pauseResumeButtonCLicked()
 void TimerWidget::stopButtonClicked()
 {
     showMessageBox("Stop button clicked");
+}
+
+void TimerWidget::timerTimeout()
+{
+    showMessageBox("Timer timeout");
 }
 
 void TimerWidget::showMessageBox(QString message)

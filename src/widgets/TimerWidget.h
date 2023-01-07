@@ -22,6 +22,7 @@ private:
 private slots:
     void pauseResumeButtonCLicked();
     void stopButtonClicked();
+    void timerTimeout();
 
 public:
     explicit TimerWidget(QWidget *parent = nullptr);
