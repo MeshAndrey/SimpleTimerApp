@@ -92,7 +92,12 @@ void InputWidget::okButtonClicked()
 
     int timerValue = getTimerValue();
 
-    this->close();
+    if (!this->close())
+    {
+        showMessageBox("Error to close input widget");
+        return;
+    }
+
     ((MainWindow*)parent())->setCentralWidget(new TimerWidget(timerValue));
 }
 
