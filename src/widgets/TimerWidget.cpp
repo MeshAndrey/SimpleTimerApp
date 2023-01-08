@@ -94,9 +94,9 @@ QString TimerWidget::convertToReadable(int value)
     if (value < 0)
         return "Error value";
 
-    int h = value / (1000 * 60 * 60);
-    int m = (value - (h  * 1000 * 60 * 60)) / (1000 * 60);
-    int s = (value - (h  * 1000 * 60 * 60) - (m * 1000 * 60)) / 1000;
+    int h = value / (1000 * 60 * 60);                                 // hours
+    int m = (value - (h  * 1000 * 60 * 60)) / (1000 * 60);            // minutes
+    int s = (value - (h  * 1000 * 60 * 60) - (m * 1000 * 60)) / 1000; // seconds
 
     if (h > 0)
         return QString("%1:%2:%3").arg(makeTimeString(QString::number(h)))
