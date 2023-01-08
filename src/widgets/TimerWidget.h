@@ -21,6 +21,7 @@ private:
     void makeConnections();
     int round(int value);
     QString convertToReadable(int value);
+    QString makeTimeString(QString time);
 
 private slots:
     void pauseResumeButtonCLicked();

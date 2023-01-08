@@ -99,18 +99,26 @@ QString TimerWidget::convertToReadable(int value)
     int s = (value - (h  * 1000 * 60 * 60) - (m * 1000 * 60)) / 1000;
 
     if (h > 0)
-        return QString("%1:%2:%3").arg(QString::number(h))
-                                  .arg(QString::number(m))
-                                  .arg(QString::number(s));
+        return QString("%1:%2:%3").arg(makeTimeString(QString::number(h)))
+                                  .arg(makeTimeString(QString::number(m)))
+                                  .arg(makeTimeString(QString::number(s)));
 
     if (m > 0)
-        return QString("%1:%2").arg(QString::number(m))
-                               .arg(QString::number(s));
+        return QString("%1:%2").arg(makeTimeString(QString::number(m)))
+                               .arg(makeTimeString(QString::number(s)));
 
     if (s > 0)
-        return QString::number(s);
+        return makeTimeString(QString::number(s));
 
-    return "0";
+    return "00";
+}
+
+QString TimerWidget::makeTimeString(QString time) // don't know how to name this shit
+{
+    if (time.isEmpty())
+        return time;
+
+    return time.length() == 2 ? time : time.prepend("0");
 }
 
 void TimerWidget::showMessageBox(QString message)
