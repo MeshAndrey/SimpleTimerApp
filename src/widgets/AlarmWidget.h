@@ -13,6 +13,8 @@ private:
 public:
     explicit AlarmWidget(QWidget *parent = nullptr);
 
+private slots:
+    void stopButtonClicked();
 signals:
 
 };

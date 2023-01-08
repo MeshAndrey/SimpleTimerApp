@@ -8,5 +8,13 @@ AlarmWidget::AlarmWidget(QWidget *parent) : QWidget(parent)
     layout->addWidget(new QLabel("Time is expired"));
     layout->addWidget(stopButton);
 
+    connect(stopButton, &QPushButton::clicked,
+            this,       &AlarmWidget::stopButtonClicked);
+
     setLayout(layout);
+}
+
+void AlarmWidget::stopButtonClicked()
+{
+
 }
