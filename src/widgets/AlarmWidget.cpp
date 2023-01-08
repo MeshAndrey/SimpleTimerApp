@@ -13,6 +13,12 @@ AlarmWidget::AlarmWidget(QWidget *parent) : QWidget(parent)
     connect(stopButton, &QPushButton::clicked,
             this,       &AlarmWidget::stopButtonClicked);
 
+    QPalette pal = QPalette();
+    pal.setColor(QPalette::Window, Qt::red);
+
+    this->setAutoFillBackground(true);
+    this->setPalette(pal);
+
     alarmSound = new QSound(":/sounds/mixkit-urgent-simple-tone-loop-2976.wav");
     alarmSound->setLoops(QSound::Infinite);
     alarmSound->play();
