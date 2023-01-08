@@ -1,4 +1,6 @@
 #include "TimerWidget.h"
+#include "AlarmWidget.h"
+#include "../MainWindow.h"
 
 TimerWidget::TimerWidget(int timerValue, QWidget *parent) : QWidget(parent)
 {
@@ -61,7 +63,9 @@ void TimerWidget::stopButtonClicked()
 
 void TimerWidget::timerTimeout()
 {
-    showMessageBox("Timer timeout");
+    this->close();
+
+    ((MainWindow*)parent())->setCentralWidget(new AlarmWidget);
 }
 
 void TimerWidget::updateTimerTimeout()
