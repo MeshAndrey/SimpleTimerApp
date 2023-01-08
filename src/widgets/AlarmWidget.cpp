@@ -1,4 +1,6 @@
 #include "AlarmWidget.h"
+#include "InputWidget.h"
+#include "../MainWindow.h"
 
 AlarmWidget::AlarmWidget(QWidget *parent) : QWidget(parent)
 {
@@ -21,4 +23,11 @@ AlarmWidget::AlarmWidget(QWidget *parent) : QWidget(parent)
 void AlarmWidget::stopButtonClicked()
 {
     alarmSound->stop();
+
+    if (!this->close())
+    {
+        return;
+    }
+
+    ((MainWindow*)parent())->setCentralWidget(new InputWidget);
 }
