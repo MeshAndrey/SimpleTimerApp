@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QWidget>
+#include <QSound>
 #include <QtWidgets>
 
 class AlarmWidget : public QWidget
@@ -10,6 +11,7 @@ class AlarmWidget : public QWidget
     Q_OBJECT
 private:
     QPushButton *stopButton = nullptr;
+    QSound *alarmSound = nullptr;
 public:
     explicit AlarmWidget(QWidget *parent = nullptr);
 

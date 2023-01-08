@@ -1,2 +1,5 @@
-<!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+    <qresource prefix="/">
+        <file>sounds/mixkit-urgent-simple-tone-loop-2976.wav</file>
+    </qresource>
+</RCC>
