@@ -85,6 +85,11 @@ void InputWidget::okButtonClicked()
         hoursEdit->text().isEmpty())
         return;
 
+    if ( (secsEdit->text() == "00"  || secsEdit->text() == "0") &&
+         (minsEdit->text() == "00"  || minsEdit->text() == "0") &&
+         (hoursEdit->text() == "00" || hoursEdit->text() == "0") )
+        return;
+
     int timerValue = getTimerValue();
 
     this->close();
