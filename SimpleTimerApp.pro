@@ -11,11 +11,13 @@ CONFIG += c++11
 SOURCES += \
     src/main.cpp \
     src/MainWindow.cpp \
+    src/widgets/AlarmWidget.cpp \
     src/widgets/InputWidget.cpp \
     src/widgets/TimerWidget.cpp
 
 HEADERS += \
     src/MainWindow.h \
+    src/widgets/AlarmWidget.h \
     src/widgets/InputWidget.h \
     src/widgets/TimerWidget.h
 
