@@ -22,7 +22,7 @@ TimerWidget::TimerWidget(int timerValue, QWidget *parent) : QWidget(parent)
     timer->start();
     updateTimer->start();
 
-    remainingTimeLabel->setText(QString::number(timerValue));
+    remainingTimeLabel->setText(convertToReadable(round(timerValue)));
 
     setLayout(layout);
 }
