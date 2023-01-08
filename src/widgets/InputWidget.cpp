@@ -113,7 +113,6 @@ int InputWidget::getTimerValue()
     int h = hoursEdit->text().toInt();
 
     int timerValue = s * 1000 + m * 60 * 1000 + h * 60 * 60 * 1000;
-    showMessageBox(QString::number(timerValue));
 
     return timerValue;
 }
