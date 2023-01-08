@@ -20,6 +20,7 @@ private:
     void showMessageBox(QString message);
     void makeConnections();
     int round(int value);
+    QString convertToReadable(int value);
 
 private slots:
     void pauseResumeButtonCLicked();
