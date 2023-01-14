@@ -113,9 +113,9 @@ int InputWidget::getTimerValue()
 
     bool ok = false;
 
-    int s = secsEdit->text().toInt(&ok);
-    int m = minsEdit->text().toInt(&ok);
-    int h = hoursEdit->text().toInt(&ok);
+    int s = !secsEdit->text().isEmpty()  ? secsEdit->text().toInt(&ok)  : 0;
+    int m = !minsEdit->text().isEmpty()  ? minsEdit->text().toInt(&ok)  : 0;
+    int h = !hoursEdit->text().isEmpty() ? hoursEdit->text().toInt(&ok) : 0;
 
     if (!ok)
     {
