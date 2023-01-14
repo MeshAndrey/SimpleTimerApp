@@ -90,6 +90,13 @@ void InputWidget::okButtonClicked()
          (hoursEdit->text() == "00" || hoursEdit->text() == "0") )
         return;
 
+    if (secsEdit->text() == " " || secsEdit->text() == "  ")
+        secsEdit->setText("");
+    if (minsEdit->text() == " " || minsEdit->text() == "  ")
+        minsEdit->setText("");
+    if (hoursEdit->text() == " " || hoursEdit->text() == "  ")
+        hoursEdit->setText("");
+
     int timerValue = getTimerValue();
 
     if (timerValue == 0)
