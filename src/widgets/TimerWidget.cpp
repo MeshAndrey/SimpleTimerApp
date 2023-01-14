@@ -60,54 +60,48 @@ void TimerWidget::pauseResumeButtonCLicked()
         timer->stop();
 
         pauseResumeButton->setText("Resume");
+        return;
     }
-    else
+
+    QStringList splitedList = remainingTimeLabel->text().split(":");
+
+    int s = 0,
+        m = 0,
+        h = 0;
+
+    bool ok = false;
+    const int lenght = splitedList.length();
+
+    switch (lenght)
     {
-        QString remainingTime = remainingTimeLabel->text();
+        case 1:
+            s = splitedList[0].toInt(&ok);
+            if (!ok) return;
 
-        QStringList splitedList = remainingTime.split(":");
+            break;
+        case 2:
+            s = splitedList[1].toInt(&ok);
+            m = splitedList[0].toInt(&ok);
+            if (!ok) return;
 
-        int timerValue = 0, s = 0, m = 0, h = 0;
-        bool ok = false;
-        const int lenght = splitedList.length();
+            break;
+        case 3:
+            s = splitedList[2].toInt(&ok);
+            m = splitedList[1].toInt(&ok);
+            h = splitedList[0].toInt(&ok);
+            if (!ok) return;
 
-        switch (lenght)
-        {
-            case 1:
-                s = splitedList[0].toInt(&ok);
-
-                if (!ok) return;
-
-                timerValue = 1000 * s;
-                break;
-            case 2:
-                s = splitedList[1].toInt(&ok);
-                m = splitedList[0].toInt(&ok);
-
-                if (!ok) return;
-
-                timerValue = 1000 * s + m * 60 * 1000;
-                break;
-            case 3:
-                s = splitedList[2].toInt(&ok);
-                m = splitedList[1].toInt(&ok);
-                h = splitedList[0].toInt(&ok);
-
-                if (!ok) return;
-
-                timerValue = 1000 * s + m * 60 * 1000 + h * 60 * 60 * 1000;
-                break;
-            default:
-                return;
-        }
-
-        timer->setInterval(timerValue);
-        updateTimer->setInterval(1000);
-
-        timer->start();
-        updateTimer->start();
-        pauseResumeButton->setText("Stop");
+            break;
+        default:
+            return;
     }
+
+    timer->setInterval( (s + m * 60 + h * 60 * 60) * 1000 );
+    updateTimer->setInterval(1000);
+
+    timer->start();
+    updateTimer->start();
+    pauseResumeButton->setText("Stop");
 }
 
 void TimerWidget::stopButtonClicked()
