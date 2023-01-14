@@ -54,7 +54,60 @@ void TimerWidget::makeConnections()
 
 void TimerWidget::pauseResumeButtonCLicked()
 {
-    showMessageBox("Pause button clicked");
+    if (timer->isActive())
+    {
+        updateTimer->stop();
+        timer->stop();
+
+        pauseResumeButton->setText("Resume");
+    }
+    else
+    {
+        QString remainingTime = remainingTimeLabel->text();
+
+        QStringList splitedList = remainingTime.split(":");
+
+        int timerValue = 0, s = 0, m = 0, h = 0;
+        bool ok = false;
+        const int lenght = splitedList.length();
+
+        switch (lenght)
+        {
+            case 1:
+                s = splitedList[0].toInt(&ok);
+
+                if (!ok) return;
+
+                timerValue = 1000 * s;
+                break;
+            case 2:
+                s = splitedList[1].toInt(&ok);
+                m = splitedList[0].toInt(&ok);
+
+                if (!ok) return;
+
+                timerValue = 1000 * s + m * 60 * 1000;
+                break;
+            case 3:
+                s = splitedList[2].toInt(&ok);
+                m = splitedList[1].toInt(&ok);
+                h = splitedList[0].toInt(&ok);
+
+                if (!ok) return;
+
+                timerValue = 1000 * s + m * 60 * 1000 + h * 60 * 60 * 1000;
+                break;
+            default:
+                return;
+        }
+
+        timer->setInterval(timerValue);
+        updateTimer->setInterval(1000);
+
+        timer->start();
+        updateTimer->start();
+        pauseResumeButton->setText("Stop");
+    }
 }
 
 void TimerWidget::stopButtonClicked()
