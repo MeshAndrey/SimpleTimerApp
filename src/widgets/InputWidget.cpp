@@ -112,7 +112,7 @@ int InputWidget::getTimerValue()
     int m = minsEdit->text().toInt();
     int h = hoursEdit->text().toInt();
 
-    int timerValue = s * 1000 + m * 60 * 1000 + h * 60 * 60 * 1000;
+    int timerValue = (s + m * 60 + h * 60 * 60) * 1000;
 
     return timerValue;
 }
