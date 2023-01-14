@@ -76,25 +76,20 @@ void TimerWidget::pauseResumeButtonCLicked()
     {
         case 1:
             s = splitedList[0].toInt(&ok);
-            if (!ok) return;
-
             break;
         case 2:
             s = splitedList[1].toInt(&ok);
             m = splitedList[0].toInt(&ok);
-            if (!ok) return;
-
             break;
         case 3:
             s = splitedList[2].toInt(&ok);
             m = splitedList[1].toInt(&ok);
             h = splitedList[0].toInt(&ok);
-            if (!ok) return;
-
             break;
         default:
             return;
     }
+    if (!ok) return;
 
     timer->setInterval( (s + m * 60 + h * 60 * 60) * 1000 );
     updateTimer->setInterval(1000);
