@@ -67,8 +67,9 @@ void TimerWidget::pauseResumeButtonCLicked()
     if (splitedList.isEmpty())
         return;
 
-    bool ok = false;
     const int lenght = splitedList.length();
+
+    bool ok = false;
 
     const int s = splitedList[lenght - 1].toInt(&ok);
     const int m = lenght > 1 ? splitedList[lenght - 2].toInt(&ok) : 0;
