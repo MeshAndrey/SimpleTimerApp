@@ -92,6 +92,9 @@ void InputWidget::okButtonClicked()
 
     int timerValue = getTimerValue();
 
+    if (timerValue == 0)
+        return;
+
     if (!this->close())
     {
         showMessageBox("Error to close input widget");
@@ -108,9 +111,17 @@ int InputWidget::getTimerValue()
         hoursEdit->text().isEmpty())
         return 0;
 
-    int s = secsEdit->text().toInt();
-    int m = minsEdit->text().toInt();
-    int h = hoursEdit->text().toInt();
+    bool ok = false;
+
+    int s = secsEdit->text().toInt(&ok);
+    int m = minsEdit->text().toInt(&ok);
+    int h = hoursEdit->text().toInt(&ok);
+
+    if (!ok)
+    {
+        showMessageBox("Error to convert editLineWidget text to int");
+        return 0;
+    }
 
     int timerValue = (s + m * 60 + h * 60 * 60) * 1000;
 
