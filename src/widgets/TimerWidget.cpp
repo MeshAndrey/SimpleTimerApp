@@ -63,16 +63,16 @@ void TimerWidget::pauseResumeButtonCLicked()
         return;
     }
 
-    QStringList splitedList = remainingTimeLabel->text().split(":");
+    const QStringList splitedList = remainingTimeLabel->text().split(":");
     if (splitedList.isEmpty())
         return;
 
     bool ok = false;
     const int lenght = splitedList.length();
 
-    int s = splitedList[lenght - 1].toInt(&ok);
-    int m = lenght > 1 ? splitedList[lenght - 2].toInt(&ok) : 0;
-    int h = lenght > 2 ? splitedList[lenght - 3].toInt(&ok) : 0;
+    const int s = splitedList[lenght - 1].toInt(&ok);
+    const int m = lenght > 1 ? splitedList[lenght - 2].toInt(&ok) : 0;
+    const int h = lenght > 2 ? splitedList[lenght - 3].toInt(&ok) : 0;
 
     if (!ok) return;
 
