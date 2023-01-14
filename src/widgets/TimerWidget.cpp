@@ -1,5 +1,6 @@
 #include "TimerWidget.h"
 #include "AlarmWidget.h"
+#include "InputWidget.h"
 #include "../MainWindow.h"
 
 TimerWidget::TimerWidget(int timerValue, QWidget *parent) : QWidget(parent)
@@ -58,7 +59,12 @@ void TimerWidget::pauseResumeButtonCLicked()
 
 void TimerWidget::stopButtonClicked()
 {
-    showMessageBox("Stop button clicked");
+    updateTimer->stop();
+    timer->stop();
+
+    this->close();
+
+    ((MainWindow*)parent())->setCentralWidget(new InputWidget);
 }
 
 void TimerWidget::timerTimeout()
