@@ -103,13 +103,13 @@ QString TimerWidget::convertToReadable(int value)
     int s = (value - (h  * 1000 * 60 * 60) - (m * 1000 * 60)) / 1000; // seconds
 
     if (h > 0)
-        return QString("%1:%2:%3").arg(makeTimeString(QString::number(h)))
-                                  .arg(makeTimeString(QString::number(m)))
-                                  .arg(makeTimeString(QString::number(s)));
+        return QString("%1:%2:%3").arg(makeTimeString(QString::number(h)),
+                                       makeTimeString(QString::number(m)),
+                                       makeTimeString(QString::number(s)));
 
     if (m > 0)
-        return QString("%1:%2").arg(makeTimeString(QString::number(m)))
-                               .arg(makeTimeString(QString::number(s)));
+        return QString("%1:%2").arg(makeTimeString(QString::number(m)),
+                                    makeTimeString(QString::number(s)));
 
     if (s > 0)
         return makeTimeString(QString::number(s));
