@@ -17,10 +17,10 @@ private:
            *updateTimer = nullptr;
 
     void allocateMemory();
-    void showMessageBox(QString message);
+    void showMessageBox(const QString message);
     void makeConnections();
-    int round(int value);
-    QString convertToReadable(int value);
+    int round(const int value);
+    QString convertToReadable(const int value);
     QString makeTimeString(QString time);
 
 private slots:

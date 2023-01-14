@@ -108,7 +108,7 @@ void TimerWidget::updateTimerTimeout()
         remainingTimeLabel->setText(convertToReadable(round(timer->remainingTime())));
 }
 
-int TimerWidget::round(int value)
+int TimerWidget::round(const int value)
 {
     if (value == 0)
         return value; // zero
@@ -127,14 +127,14 @@ int TimerWidget::round(int value)
     return value;
 }
 
-QString TimerWidget::convertToReadable(int value)
+QString TimerWidget::convertToReadable(const int value)
 {
     if (value < 0)
         return "Error value";
 
-    int h = value / (1000 * 60 * 60);                                 // hours
-    int m = (value - (h  * 1000 * 60 * 60)) / (1000 * 60);            // minutes
-    int s = (value - (h  * 1000 * 60 * 60) - (m * 1000 * 60)) / 1000; // seconds
+    const int h = value / (1000 * 60 * 60);                                 // hours
+    const int m = (value - (h  * 1000 * 60 * 60)) / (1000 * 60);            // minutes
+    const int s = (value - (h  * 1000 * 60 * 60) - (m * 1000 * 60)) / 1000; // seconds
 
     if (h > 0)
         return QString("%1:%2:%3").arg(makeTimeString(QString::number(h)),
@@ -159,7 +159,7 @@ QString TimerWidget::makeTimeString(QString time) // don't know how to name this
     return time.length() == 2 ? time : time.prepend("0");
 }
 
-void TimerWidget::showMessageBox(QString message)
+void TimerWidget::showMessageBox(const QString message)
 {
     if (message.isEmpty())
         return;
