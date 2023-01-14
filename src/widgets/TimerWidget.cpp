@@ -64,31 +64,16 @@ void TimerWidget::pauseResumeButtonCLicked()
     }
 
     QStringList splitedList = remainingTimeLabel->text().split(":");
-
-    int s = 0,
-        m = 0,
-        h = 0;
+    if (splitedList.isEmpty())
+        return;
 
     bool ok = false;
     const int lenght = splitedList.length();
 
-    switch (lenght)
-    {
-        case 1:
-            s = splitedList[0].toInt(&ok);
-            break;
-        case 2:
-            s = splitedList[1].toInt(&ok);
-            m = splitedList[0].toInt(&ok);
-            break;
-        case 3:
-            s = splitedList[2].toInt(&ok);
-            m = splitedList[1].toInt(&ok);
-            h = splitedList[0].toInt(&ok);
-            break;
-        default:
-            return;
-    }
+    int s = splitedList[lenght - 1].toInt(&ok);
+    int m = lenght > 1 ? splitedList[lenght - 2].toInt(&ok) : 0;
+    int h = lenght > 2 ? splitedList[lenght - 3].toInt(&ok) : 0;
+
     if (!ok) return;
 
     timer->setInterval( (s + m * 60 + h * 60 * 60) * 1000 );
