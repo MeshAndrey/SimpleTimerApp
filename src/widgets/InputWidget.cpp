@@ -10,6 +10,7 @@ InputWidget::InputWidget(QWidget *parent) : QWidget(parent)
 
 void InputWidget::initWidgets()
 {
+    nameEdit  = new QLineEdit;
     hoursEdit = new QLineEdit;
     minsEdit  = new QLineEdit;
     secsEdit  = new QLineEdit;
@@ -20,6 +21,7 @@ void InputWidget::initWidgets()
 
 void InputWidget::initLayout()
 {
+    QHBoxLayout *nameLayout = new QHBoxLayout;
     QVBoxLayout *verLayout = new QVBoxLayout;
     QHBoxLayout *timeInputsLayout = new QHBoxLayout;
     QGridLayout *gridLayout = new QGridLayout;
@@ -41,6 +43,9 @@ void InputWidget::initLayout()
     gridLayout->addWidget(zeroButton, 3, 1);
     connect(zeroButton, &QPushButton::clicked,
             this, &InputWidget::buttonClicked);
+
+    nameLayout->addWidget(new QLabel("Name:"));
+    nameLayout->addWidget(nameEdit);
 
     timeInputsLayout->addWidget(hoursEdit);
     timeInputsLayout->addWidget(new QLabel("H"));
@@ -64,6 +69,7 @@ void InputWidget::initLayout()
     connect(okButton, &QPushButton::clicked,
             this, &InputWidget::okButtonClicked);
 
+    verLayout->addLayout(nameLayout);
     verLayout->addLayout(timeInputsLayout);
     verLayout->addLayout(gridLayout);
     verLayout->addLayout(bottomHorLayout);

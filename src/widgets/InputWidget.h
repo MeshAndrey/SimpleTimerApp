@@ -9,7 +9,8 @@ class InputWidget : public QWidget
 {
     Q_OBJECT
 private:
-    QLineEdit *hoursEdit = nullptr,
+    QLineEdit *nameEdit  = nullptr,
+              *hoursEdit = nullptr,
               *minsEdit  = nullptr,
               *secsEdit  = nullptr;
     QPushButton *deleteButton = nullptr,
