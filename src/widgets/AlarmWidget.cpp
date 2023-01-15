@@ -5,14 +5,11 @@
 AlarmWidget::AlarmWidget(QString name, QWidget *parent) : QWidget(parent)
 {
     QVBoxLayout * centralLayout = new QVBoxLayout;
-    QHBoxLayout * bottomLayout = new QHBoxLayout;
     stopButton = new QPushButton("Stop");
 
-    bottomLayout->addWidget(new QLabel("Time is expired"));
-    bottomLayout->addWidget(stopButton);
-
     centralLayout->addWidget(new QLabel(name), 0, Qt::AlignCenter);
-    centralLayout->addLayout(bottomLayout);
+    centralLayout->addWidget(new QLabel("Time is expired"), 0, Qt::AlignCenter);
+    centralLayout->addWidget(stopButton, 0, Qt::AlignCenter);
 
     connect(stopButton, &QPushButton::clicked,
             this,       &AlarmWidget::stopButtonClicked);
