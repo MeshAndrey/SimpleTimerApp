@@ -102,7 +102,7 @@ void TimerWidget::timerTimeout()
 {
     this->close();
 
-    ((MainWindow*)parent())->setCentralWidget(new AlarmWidget);
+    ((MainWindow*)parent())->setCentralWidget(new AlarmWidget(this->name));
 }
 
 void TimerWidget::updateTimerTimeout()

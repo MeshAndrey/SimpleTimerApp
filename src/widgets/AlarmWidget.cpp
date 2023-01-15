@@ -2,13 +2,17 @@
 #include "InputWidget.h"
 #include "../MainWindow.h"
 
-AlarmWidget::AlarmWidget(QWidget *parent) : QWidget(parent)
+AlarmWidget::AlarmWidget(QString name, QWidget *parent) : QWidget(parent)
 {
-    QHBoxLayout * layout = new QHBoxLayout;
+    QVBoxLayout * centralLayout = new QVBoxLayout;
+    QHBoxLayout * bottomLayout = new QHBoxLayout;
     stopButton = new QPushButton("Stop");
 
-    layout->addWidget(new QLabel("Time is expired"));
-    layout->addWidget(stopButton);
+    bottomLayout->addWidget(new QLabel("Time is expired"));
+    bottomLayout->addWidget(stopButton);
+
+    centralLayout->addWidget(new QLabel(name), 0, Qt::AlignCenter);
+    centralLayout->addLayout(bottomLayout);
 
     connect(stopButton, &QPushButton::clicked,
             this,       &AlarmWidget::stopButtonClicked);
@@ -23,7 +27,7 @@ AlarmWidget::AlarmWidget(QWidget *parent) : QWidget(parent)
     alarmSound->setLoops(QSound::Infinite);
     alarmSound->play();
 
-    setLayout(layout);
+    setLayout(centralLayout);
 }
 
 void AlarmWidget::stopButtonClicked()

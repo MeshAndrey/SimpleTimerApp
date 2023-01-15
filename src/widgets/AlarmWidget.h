@@ -13,7 +13,7 @@ private:
     QPushButton *stopButton = nullptr;
     QSound *alarmSound = nullptr;
 public:
-    explicit AlarmWidget(QWidget *parent = nullptr);
+    explicit AlarmWidget(QString name, QWidget *parent = nullptr);
 
 private slots:
     void stopButtonClicked();
