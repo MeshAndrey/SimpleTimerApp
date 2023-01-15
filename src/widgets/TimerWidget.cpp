@@ -17,7 +17,7 @@ TimerWidget::TimerWidget(QString name, int timerValue, QWidget *parent) : QWidge
     horLayout->addWidget(stopButton);
 
     layout->addWidget(new QLabel(name),   0, Qt::AlignCenter);
-    layout->addWidget(remainingTimeLabel, 0, Qt::AlignCenter);
+    layout->addWidget(remainingTimeLabel, 1, Qt::AlignCenter);
     layout->addLayout(horLayout);
 
     timer->setSingleShot(true);
