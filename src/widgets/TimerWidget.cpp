@@ -16,7 +16,7 @@ TimerWidget::TimerWidget(QString name, int timerValue, QWidget *parent) : QWidge
     horLayout->addWidget(pauseResumeButton);
     horLayout->addWidget(stopButton);
 
-    layout->addWidget(new QLabel(name));
+    layout->addWidget(new QLabel(name),   0, Qt::AlignCenter);
     layout->addWidget(remainingTimeLabel, 0, Qt::AlignCenter);
     layout->addLayout(horLayout);
 
