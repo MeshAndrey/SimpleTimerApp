@@ -114,7 +114,8 @@ void InputWidget::okButtonClicked()
         return;
     }
 
-    ((MainWindow*)parent())->setCentralWidget(new TimerWidget(timerValue));
+    ((MainWindow*)parent())->setCentralWidget(new TimerWidget(nameEdit->text(),
+                                                              timerValue));
 }
 
 int InputWidget::getTimerValue()

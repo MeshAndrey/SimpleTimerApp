@@ -9,6 +9,7 @@ class TimerWidget : public QWidget
 {
     Q_OBJECT
 private:
+    QString name;
     QLabel *remainingTimeLabel = nullptr;
     QPushButton *pauseResumeButton = nullptr,
                 *stopButton        = nullptr;
@@ -30,7 +31,7 @@ private slots:
     void updateTimerTimeout();
 
 public:
-    explicit TimerWidget(int timerValue, QWidget *parent = nullptr);
+    explicit TimerWidget(QString name, int timerValue, QWidget *parent = nullptr);
 
 signals:
 

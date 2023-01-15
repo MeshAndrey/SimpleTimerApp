@@ -3,8 +3,10 @@
 #include "InputWidget.h"
 #include "../MainWindow.h"
 
-TimerWidget::TimerWidget(int timerValue, QWidget *parent) : QWidget(parent)
+TimerWidget::TimerWidget(QString name, int timerValue, QWidget *parent) : QWidget(parent)
 {
+    this->name = name;
+
     QVBoxLayout * layout = new QVBoxLayout;
     QHBoxLayout * horLayout = new QHBoxLayout;
 
@@ -14,6 +16,7 @@ TimerWidget::TimerWidget(int timerValue, QWidget *parent) : QWidget(parent)
     horLayout->addWidget(pauseResumeButton);
     horLayout->addWidget(stopButton);
 
+    layout->addWidget(new QLabel(name));
     layout->addWidget(remainingTimeLabel, 0, Qt::AlignCenter);
     layout->addLayout(horLayout);
 
