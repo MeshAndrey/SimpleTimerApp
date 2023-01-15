@@ -21,7 +21,7 @@ void InputWidget::initWidgets()
 void InputWidget::initLayout()
 {
     QVBoxLayout *verLayout = new QVBoxLayout;
-    QHBoxLayout *topHorLayout = new QHBoxLayout;
+    QHBoxLayout *timeInputsLayout = new QHBoxLayout;
     QGridLayout *gridLayout = new QGridLayout;
     QHBoxLayout *bottomHorLayout = new QHBoxLayout;
 
@@ -42,12 +42,12 @@ void InputWidget::initLayout()
     connect(zeroButton, &QPushButton::clicked,
             this, &InputWidget::buttonClicked);
 
-    topHorLayout->addWidget(hoursEdit);
-    topHorLayout->addWidget(new QLabel("H"));
-    topHorLayout->addWidget(minsEdit);
-    topHorLayout->addWidget(new QLabel("Min"));
-    topHorLayout->addWidget(secsEdit);
-    topHorLayout->addWidget(new QLabel("Sec"));
+    timeInputsLayout->addWidget(hoursEdit);
+    timeInputsLayout->addWidget(new QLabel("H"));
+    timeInputsLayout->addWidget(minsEdit);
+    timeInputsLayout->addWidget(new QLabel("Min"));
+    timeInputsLayout->addWidget(secsEdit);
+    timeInputsLayout->addWidget(new QLabel("Sec"));
 
     connect(hoursEdit, &QLineEdit::textEdited,
             this, &InputWidget::textEdited);
@@ -64,7 +64,7 @@ void InputWidget::initLayout()
     connect(okButton, &QPushButton::clicked,
             this, &InputWidget::okButtonClicked);
 
-    verLayout->addLayout(topHorLayout);
+    verLayout->addLayout(timeInputsLayout);
     verLayout->addLayout(gridLayout);
     verLayout->addLayout(bottomHorLayout);
 
