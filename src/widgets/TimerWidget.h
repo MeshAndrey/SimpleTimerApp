@@ -17,9 +17,11 @@ private:
     QTimer *timer       = nullptr,
            *updateTimer = nullptr;
 
-    void allocateMemory();
+    void initWidgets();
+    void initLayout();
+    void initConnections();
     void showMessageBox(const QString message);
-    void makeConnections();
+
     int round(const int value);
     QString convertToReadable(const int value);
     QString makeTimeString(QString time);
