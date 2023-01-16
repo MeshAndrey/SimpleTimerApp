@@ -18,6 +18,7 @@ private:
 
     void initWidgets();
     void initLayout();
+    void initConnections();
     void showMessageBox(QString message);
     int getTimerValue();
 

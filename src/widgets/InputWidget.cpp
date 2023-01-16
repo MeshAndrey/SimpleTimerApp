@@ -6,6 +6,7 @@ InputWidget::InputWidget(QWidget *parent) : QWidget(parent)
 {
     initWidgets();
     initLayout();
+    initConnections();
 }
 
 void InputWidget::initWidgets()
@@ -54,20 +55,8 @@ void InputWidget::initLayout()
     timeInputsLayout->addWidget(secsEdit);
     timeInputsLayout->addWidget(new QLabel("Sec"));
 
-    connect(hoursEdit, &QLineEdit::textEdited,
-            this, &InputWidget::textEdited);
-    connect(minsEdit, &QLineEdit::textEdited,
-            this, &InputWidget::textEdited);
-    connect(secsEdit, &QLineEdit::textEdited,
-            this, &InputWidget::textEdited);
-
     bottomHorLayout->addWidget(clearButton);
     bottomHorLayout->addWidget(okButton);
-
-    connect(clearButton, &QPushButton::clicked,
-            this, &InputWidget::clearButtonClicked);
-    connect(okButton, &QPushButton::clicked,
-            this, &InputWidget::okButtonClicked);
 
     verLayout->addLayout(nameLayout);
     verLayout->addLayout(timeInputsLayout);
@@ -75,6 +64,21 @@ void InputWidget::initLayout()
     verLayout->addLayout(bottomHorLayout);
 
     setLayout(verLayout);
+}
+
+void InputWidget::initConnections()
+{
+    connect(hoursEdit, &QLineEdit::textEdited,
+            this, &InputWidget::textEdited);
+    connect(minsEdit, &QLineEdit::textEdited,
+            this, &InputWidget::textEdited);
+    connect(secsEdit, &QLineEdit::textEdited,
+            this, &InputWidget::textEdited);
+
+    connect(clearButton, &QPushButton::clicked,
+            this, &InputWidget::clearButtonClicked);
+    connect(okButton, &QPushButton::clicked,
+            this, &InputWidget::okButtonClicked);
 }
 
 void InputWidget::clearButtonClicked()
