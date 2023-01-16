@@ -15,7 +15,7 @@ void InputWidget::initWidgets()
     minsEdit  = new QLineEdit;
     secsEdit  = new QLineEdit;
 
-    deleteButton = new QPushButton("Delete");
+    clearButton = new QPushButton("Clear");
     okButton = new QPushButton("Ok");
 }
 
@@ -61,10 +61,10 @@ void InputWidget::initLayout()
     connect(secsEdit, &QLineEdit::textEdited,
             this, &InputWidget::textEdited);
 
-    bottomHorLayout->addWidget(deleteButton);
+    bottomHorLayout->addWidget(clearButton);
     bottomHorLayout->addWidget(okButton);
 
-    connect(deleteButton, &QPushButton::clicked,
+    connect(clearButton, &QPushButton::clicked,
             this, &InputWidget::deleteButtonClicked);
     connect(okButton, &QPushButton::clicked,
             this, &InputWidget::okButtonClicked);
