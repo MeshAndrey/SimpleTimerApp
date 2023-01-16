@@ -65,7 +65,7 @@ void InputWidget::initLayout()
     bottomHorLayout->addWidget(okButton);
 
     connect(clearButton, &QPushButton::clicked,
-            this, &InputWidget::deleteButtonClicked);
+            this, &InputWidget::clearButtonClicked);
     connect(okButton, &QPushButton::clicked,
             this, &InputWidget::okButtonClicked);
 
@@ -77,8 +77,9 @@ void InputWidget::initLayout()
     setLayout(verLayout);
 }
 
-void InputWidget::deleteButtonClicked()
+void InputWidget::clearButtonClicked()
 {
+    nameEdit->setText("");
     secsEdit->setText("");
     minsEdit->setText("");
     hoursEdit->setText("");

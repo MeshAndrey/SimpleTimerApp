@@ -13,7 +13,7 @@ private:
               *hoursEdit = nullptr,
               *minsEdit  = nullptr,
               *secsEdit  = nullptr;
-    QPushButton *deleteButton = nullptr,
+    QPushButton *clearButton = nullptr,
                 *okButton     = nullptr;
 
     void initWidgets();
@@ -26,7 +26,7 @@ public:
 
 private slots:
     void buttonClicked();
-    void deleteButtonClicked();
+    void clearButtonClicked();
     void okButtonClicked();
     void textEdited(const QString &text);
 };
