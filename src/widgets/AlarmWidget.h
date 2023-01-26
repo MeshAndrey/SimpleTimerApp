@@ -11,7 +11,7 @@ class AlarmWidget : public QWidget
     Q_OBJECT
 private:
     QPushButton *stopButton = nullptr,
-                *retryButton = nullptr;
+                *repeatButton = nullptr;
     QSound *alarmSound = nullptr;
 public:
     explicit AlarmWidget(QString name, QWidget *parent = nullptr);
