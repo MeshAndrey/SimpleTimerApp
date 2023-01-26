@@ -1,10 +1,12 @@
 #include "AlarmWidget.h"
 #include "InputWidget.h"
+#include "TimerWidget.h"
 #include "../MainWindow.h"
 
 AlarmWidget::AlarmWidget(QString name, int timerValue, QWidget *parent) : QWidget(parent)
 {
     this->timerValue = timerValue;
+    this->name = name;
 
     QVBoxLayout * centralLayout = new QVBoxLayout;
     QHBoxLayout * buttonLayout = new QHBoxLayout;
@@ -50,5 +52,12 @@ void AlarmWidget::stopButtonClicked()
 
 void AlarmWidget::repeatButtonClicked()
 {
+    alarmSound->stop();
 
+    if (!this->close())
+    {
+        return;
+    }
+
+    ((MainWindow*)parent())->setCentralWidget(new TimerWidget(this->name, this->timerValue));
 }

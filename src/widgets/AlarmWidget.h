@@ -11,6 +11,7 @@ class AlarmWidget : public QWidget
     Q_OBJECT
 private:
     int timerValue = 0;
+    QString name;
     QPushButton *stopButton = nullptr,
                 *repeatButton = nullptr;
     QSound *alarmSound = nullptr;
