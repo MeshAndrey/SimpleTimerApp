@@ -7,10 +7,9 @@ TimerWidget::TimerWidget(QString name, int timerValue, QWidget *parent) : QWidge
 {
     this->name = name;
 
-
-
     initWidgets();
     initConnections();
+    initLayout();
 
     timer->setSingleShot(true);
     timer->setInterval(timerValue);
@@ -21,8 +20,6 @@ TimerWidget::TimerWidget(QString name, int timerValue, QWidget *parent) : QWidge
     updateTimer->start();
 
     remainingTimeLabel->setText(convertToReadable(round(timerValue)));
-
-
 }
 
 void TimerWidget::initWidgets()
