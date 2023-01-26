@@ -8,7 +8,7 @@ AlarmWidget::AlarmWidget(QString name, int timerValue, QWidget *parent) : QWidge
 
     QVBoxLayout * centralLayout = new QVBoxLayout;
     QHBoxLayout * buttonLayout = new QHBoxLayout;
-    repeatButton = new QPushButton("Retry");
+    repeatButton = new QPushButton("Repeat");
     stopButton = new QPushButton("Stop");
 
     buttonLayout->addWidget(stopButton);
