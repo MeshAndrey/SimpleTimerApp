@@ -18,6 +18,7 @@ private:
 
     void initWidgets();
     void initLayout();
+    void initConnections();
 public:
     explicit AlarmWidget(QString name, int timerValue, QWidget *parent = nullptr);
 

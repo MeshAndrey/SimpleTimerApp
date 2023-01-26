@@ -10,11 +10,7 @@ AlarmWidget::AlarmWidget(QString name, int timerValue, QWidget *parent) : QWidge
 
     initWidgets();
     initLayout();
-
-    connect(stopButton, &QPushButton::clicked,
-            this,       &AlarmWidget::stopButtonClicked);
-    connect(repeatButton, &QPushButton::clicked,
-            this,       &AlarmWidget::repeatButtonClicked);
+    initConnections();
 
     alarmSound = new QSound(":/sounds/mixkit-urgent-simple-tone-loop-2976.wav");
     alarmSound->setLoops(QSound::Infinite);
@@ -45,6 +41,14 @@ void AlarmWidget::initLayout()
     this->setAutoFillBackground(true);
     this->setPalette(pal);
     setLayout(centralLayout);
+}
+
+void AlarmWidget::initConnections()
+{
+    connect(stopButton, &QPushButton::clicked,
+            this,       &AlarmWidget::stopButtonClicked);
+    connect(repeatButton, &QPushButton::clicked,
+            this,       &AlarmWidget::repeatButtonClicked);
 }
 
 void AlarmWidget::stopButtonClicked()
