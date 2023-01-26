@@ -17,6 +17,7 @@ private:
     QSound *alarmSound = nullptr;
 
     void initWidgets();
+    void initLayout();
 public:
     explicit AlarmWidget(QString name, int timerValue, QWidget *parent = nullptr);
 

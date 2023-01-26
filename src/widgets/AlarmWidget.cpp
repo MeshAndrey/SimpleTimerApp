@@ -9,7 +9,26 @@ AlarmWidget::AlarmWidget(QString name, int timerValue, QWidget *parent) : QWidge
     this->name = name;
 
     initWidgets();
+    initLayout();
 
+    connect(stopButton, &QPushButton::clicked,
+            this,       &AlarmWidget::stopButtonClicked);
+    connect(repeatButton, &QPushButton::clicked,
+            this,       &AlarmWidget::repeatButtonClicked);
+
+    alarmSound = new QSound(":/sounds/mixkit-urgent-simple-tone-loop-2976.wav");
+    alarmSound->setLoops(QSound::Infinite);
+    alarmSound->play();
+}
+
+void AlarmWidget::initWidgets()
+{
+    repeatButton = new QPushButton("Repeat");
+    stopButton = new QPushButton("Stop");
+}
+
+void AlarmWidget::initLayout()
+{
     QVBoxLayout * centralLayout = new QVBoxLayout;
     QHBoxLayout * buttonLayout = new QHBoxLayout;
 
@@ -17,31 +36,15 @@ AlarmWidget::AlarmWidget(QString name, int timerValue, QWidget *parent) : QWidge
     buttonLayout->addWidget(repeatButton);
 
     centralLayout->addWidget(new QLabel(name),              0, Qt::AlignCenter);
-    centralLayout->addWidget(new QLabel("Time is expired"), 0, Qt::AlignCenter);   
+    centralLayout->addWidget(new QLabel("Time is expired"), 0, Qt::AlignCenter);
     centralLayout->addLayout(buttonLayout);
-
-    connect(stopButton, &QPushButton::clicked,
-            this,       &AlarmWidget::stopButtonClicked);
-    connect(repeatButton, &QPushButton::clicked,
-            this,       &AlarmWidget::repeatButtonClicked);
 
     QPalette pal = QPalette();
     pal.setColor(QPalette::Window, Qt::red);
 
     this->setAutoFillBackground(true);
     this->setPalette(pal);
-
-    alarmSound = new QSound(":/sounds/mixkit-urgent-simple-tone-loop-2976.wav");
-    alarmSound->setLoops(QSound::Infinite);
-    alarmSound->play();
-
     setLayout(centralLayout);
-}
-
-void AlarmWidget::initWidgets()
-{
-    repeatButton = new QPushButton("Repeat");
-    stopButton = new QPushButton("Stop");
 }
 
 void AlarmWidget::stopButtonClicked()
