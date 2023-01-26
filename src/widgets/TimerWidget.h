@@ -9,6 +9,7 @@ class TimerWidget : public QWidget
 {
     Q_OBJECT
 private:
+    int timerValue = 0;
     QString name;
     QLabel *remainingTimeLabel = nullptr;
     QPushButton *pauseResumeButton = nullptr,

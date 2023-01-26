@@ -6,6 +6,7 @@
 TimerWidget::TimerWidget(QString name, int timerValue, QWidget *parent) : QWidget(parent)
 {
     this->name = name;
+    this->timerValue = timerValue;
 
     initWidgets();
     initConnections();
