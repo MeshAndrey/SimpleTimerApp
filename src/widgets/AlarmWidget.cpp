@@ -19,7 +19,7 @@ AlarmWidget::AlarmWidget(QString name, QWidget *parent) : QWidget(parent)
     connect(stopButton, &QPushButton::clicked,
             this,       &AlarmWidget::stopButtonClicked);
     connect(repeatButton, &QPushButton::clicked,
-            this,       &AlarmWidget::stopButtonClicked);
+            this,       &AlarmWidget::repeatButtonClicked);
 
     QPalette pal = QPalette();
     pal.setColor(QPalette::Window, Qt::red);
@@ -44,4 +44,9 @@ void AlarmWidget::stopButtonClicked()
     }
 
     ((MainWindow*)parent())->setCentralWidget(new InputWidget);
+}
+
+void AlarmWidget::repeatButtonClicked()
+{
+
 }
