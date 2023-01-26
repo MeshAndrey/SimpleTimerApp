@@ -59,5 +59,6 @@ void AlarmWidget::repeatButtonClicked()
         return;
     }
 
-    ((MainWindow*)parent())->setCentralWidget(new TimerWidget(this->name, this->timerValue));
+    ((MainWindow*)parent())->setCentralWidget(
+                new TimerWidget(this->name, this->timerValue));
 }
