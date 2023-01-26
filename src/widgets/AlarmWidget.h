@@ -15,6 +15,8 @@ private:
     QPushButton *stopButton = nullptr,
                 *repeatButton = nullptr;
     QSound *alarmSound = nullptr;
+
+    void initWidgets();
 public:
     explicit AlarmWidget(QString name, int timerValue, QWidget *parent = nullptr);
 

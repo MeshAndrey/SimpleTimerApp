@@ -8,10 +8,10 @@ AlarmWidget::AlarmWidget(QString name, int timerValue, QWidget *parent) : QWidge
     this->timerValue = timerValue;
     this->name = name;
 
+    initWidgets();
+
     QVBoxLayout * centralLayout = new QVBoxLayout;
     QHBoxLayout * buttonLayout = new QHBoxLayout;
-    repeatButton = new QPushButton("Repeat");
-    stopButton = new QPushButton("Stop");
 
     buttonLayout->addWidget(stopButton);
     buttonLayout->addWidget(repeatButton);
@@ -36,6 +36,12 @@ AlarmWidget::AlarmWidget(QString name, int timerValue, QWidget *parent) : QWidge
     alarmSound->play();
 
     setLayout(centralLayout);
+}
+
+void AlarmWidget::initWidgets()
+{
+    repeatButton = new QPushButton("Repeat");
+    stopButton = new QPushButton("Stop");
 }
 
 void AlarmWidget::stopButtonClicked()
