@@ -28,8 +28,8 @@ void AlarmWidget::initLayout()
     QVBoxLayout * centralLayout = new QVBoxLayout;
     QHBoxLayout * buttonLayout = new QHBoxLayout;
 
-    buttonLayout->addWidget(stopButton);
     buttonLayout->addWidget(repeatButton);
+    buttonLayout->addWidget(stopButton);
 
     centralLayout->addWidget(new QLabel(name),              0, Qt::AlignCenter);
     centralLayout->addWidget(new QLabel("Time is expired"), 0, Qt::AlignCenter);
