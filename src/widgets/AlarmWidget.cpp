@@ -2,8 +2,10 @@
 #include "InputWidget.h"
 #include "../MainWindow.h"
 
-AlarmWidget::AlarmWidget(QString name, QWidget *parent) : QWidget(parent)
+AlarmWidget::AlarmWidget(QString name, int timerValue, QWidget *parent) : QWidget(parent)
 {
+    this->timerValue = timerValue;
+
     QVBoxLayout * centralLayout = new QVBoxLayout;
     QHBoxLayout * buttonLayout = new QHBoxLayout;
     repeatButton = new QPushButton("Retry");

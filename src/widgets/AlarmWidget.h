@@ -10,14 +10,16 @@ class AlarmWidget : public QWidget
 {
     Q_OBJECT
 private:
+    int timerValue = 0;
     QPushButton *stopButton = nullptr,
                 *repeatButton = nullptr;
     QSound *alarmSound = nullptr;
 public:
-    explicit AlarmWidget(QString name, QWidget *parent = nullptr);
+    explicit AlarmWidget(QString name, int timerValue, QWidget *parent = nullptr);
 
 private slots:
     void stopButtonClicked();
+    void repeatButtonClicked();
 signals:
 
 };
