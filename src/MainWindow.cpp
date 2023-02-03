@@ -26,6 +26,13 @@ void MainWindow::addButtonClicked()
     layout->addWidget(addButton);
 }
 
+void MainWindow::replaceWidget(QWidget* oldWidget,
+                               QWidget* newWidget)
+{
+    Q_UNUSED(oldWidget);
+    Q_UNUSED(newWidget);
+}
+
 MainWindow::~MainWindow()
 {
 }

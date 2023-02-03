@@ -20,6 +20,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-
+    void replaceWidget(QWidget* oldWidget,
+                       QWidget* newWidget);
 };
 #endif // MAINWINDOW_H
