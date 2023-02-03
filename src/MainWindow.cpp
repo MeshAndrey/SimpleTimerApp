@@ -21,7 +21,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::addButtonClicked()
 {
-
+    layout->removeWidget(addButton);
+    layout->addWidget(new InputWidget());
+    layout->addWidget(addButton);
 }
 
 MainWindow::~MainWindow()
