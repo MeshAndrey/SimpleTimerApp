@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QVBoxLayout>
+#include <QPushButton>
 
 class MainWindow : public QMainWindow
 {
@@ -10,6 +11,7 @@ class MainWindow : public QMainWindow
 private:
     QVBoxLayout *layout = nullptr;
     QWidget *centralWidget = nullptr;
+    QPushButton* addButton = nullptr;
 
 private slots:
     void addButtonClicked();
