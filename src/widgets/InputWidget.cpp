@@ -63,6 +63,8 @@ void InputWidget::initLayout()
     verLayout->addLayout(gridLayout);
     verLayout->addLayout(bottomHorLayout);
 
+    setMinimumSize(400, 250);
+    setMaximumSize(400, 300);
     setLayout(verLayout);
 }
 

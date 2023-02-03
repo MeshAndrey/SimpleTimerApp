@@ -1,6 +1,6 @@
 #include "MainWindow.h"
 #include "widgets/InputWidget.h"
-
+#include <QScrollArea>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -16,7 +16,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(addButton, &QPushButton::clicked,
             this, &MainWindow::addButtonClicked);
 
-    setCentralWidget(centralWidget);
+    QScrollArea *area = new QScrollArea;
+    area->setWidgetResizable(true);
+    area->verticalScrollBar()->setVisible(true);
+    area->setWidget(centralWidget);
+
+    setCentralWidget(area);
 }
 
 void MainWindow::addButtonClicked()
