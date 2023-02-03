@@ -14,6 +14,9 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(centralWidget);
 }
 
+void MainWindow::addButtonClicked()
+{}
+
 MainWindow::~MainWindow()
 {
 }
