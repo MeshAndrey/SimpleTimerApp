@@ -6,10 +6,10 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     layout = new QVBoxLayout;
-    layout->addWidget(new InputWidget());
+    layout->addWidget(new InputWidget(), 0, Qt::AlignCenter);
 
     addButton = new QPushButton("+");
-    layout->addWidget(addButton);
+    layout->addWidget(addButton, 0, Qt::AlignCenter | Qt::AlignTop);
     centralWidget = new QWidget;
     centralWidget->setLayout(layout);
 
@@ -27,8 +27,8 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::addButtonClicked()
 {
     layout->removeWidget(addButton);
-    layout->addWidget(new InputWidget());
-    layout->addWidget(addButton);
+    layout->addWidget(new InputWidget(), 0, Qt::AlignCenter);
+    layout->addWidget(addButton, 0, Qt::AlignCenter | Qt::AlignTop);
 }
 
 void MainWindow::replaceWidget(QWidget* oldWidget,
