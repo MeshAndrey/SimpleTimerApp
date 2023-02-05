@@ -115,14 +115,8 @@ void InputWidget::okButtonClicked()
     if (timerValue == 0)
         return;
 
-    if (!this->close())
-    {
-        showMessageBox("Error to close input widget");
-        return;
-    }
-
-    ((MainWindow*)parent())->setCentralWidget(new TimerWidget(nameEdit->text(),
-                                                              timerValue));
+    ((MainWindow*)parent())->replaceWidget(this, new TimerWidget(
+                                               nameEdit->text(), timerValue));
 }
 
 int InputWidget::getTimerValue()

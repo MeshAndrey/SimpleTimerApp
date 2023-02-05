@@ -48,30 +48,20 @@ void AlarmWidget::initConnections()
     connect(stopButton, &QPushButton::clicked,
             this,       &AlarmWidget::stopButtonClicked);
     connect(repeatButton, &QPushButton::clicked,
-            this,       &AlarmWidget::repeatButtonClicked);
+            this,         &AlarmWidget::repeatButtonClicked);
 }
 
 void AlarmWidget::stopButtonClicked()
 {
     alarmSound->stop();
 
-    if (!this->close())
-    {
-        return;
-    }
-
-    ((MainWindow*)parent())->setCentralWidget(new InputWidget);
+    ((MainWindow*)parent())->replaceWidget(this, new InputWidget);
 }
 
 void AlarmWidget::repeatButtonClicked()
 {
     alarmSound->stop();
 
-    if (!this->close())
-    {
-        return;
-    }
-
-    ((MainWindow*)parent())->setCentralWidget(
-                new TimerWidget(this->name, this->timerValue));
+    ((MainWindow*)parent())->replaceWidget(this,
+                  new TimerWidget(this->name, this->timerValue));
 }

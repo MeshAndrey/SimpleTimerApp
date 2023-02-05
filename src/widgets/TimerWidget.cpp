@@ -98,17 +98,13 @@ void TimerWidget::stopButtonClicked()
     updateTimer->stop();
     timer->stop();
 
-    this->close();
-
-    ((MainWindow*)parent())->setCentralWidget(new InputWidget);
+    ((MainWindow*)parent())->replaceWidget(this, new InputWidget);
 }
 
 void TimerWidget::timerTimeout()
 {
-    this->close();
-
-    ((MainWindow*)parent())->setCentralWidget(
-                new AlarmWidget(this->name, this->timerValue));
+    ((MainWindow*)parent())->replaceWidget(this,
+                  new AlarmWidget(this->name, this->timerValue));
 }
 
 void TimerWidget::updateTimerTimeout()
