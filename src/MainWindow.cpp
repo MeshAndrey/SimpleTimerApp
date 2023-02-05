@@ -34,8 +34,27 @@ void MainWindow::addButtonClicked()
 void MainWindow::replaceWidget(QWidget* oldWidget,
                                QWidget* newWidget)
 {
-    Q_UNUSED(oldWidget);
-    Q_UNUSED(newWidget);
+    auto old = layout->replaceWidget(oldWidget, newWidget, Qt::FindDirectChildrenOnly)->widget();
+
+    if (old == nullptr)
+    {
+        showMessageBox("replace widget returned nullptr");
+        return;
+    }
+
+    old->close();
+    delete old;
+}
+
+
+void MainWindow::showMessageBox(QString message)
+{
+    if (message.isEmpty())
+        return;
+
+    QMessageBox msg;
+    msg.setText(message);
+    msg.exec();
 }
 
 MainWindow::~MainWindow()

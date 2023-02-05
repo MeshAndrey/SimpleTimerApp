@@ -22,5 +22,7 @@ public:
 
     void replaceWidget(QWidget* oldWidget,
                        QWidget* newWidget);
+
+    void showMessageBox(QString message);
 };
 #endif // MAINWINDOW_H
