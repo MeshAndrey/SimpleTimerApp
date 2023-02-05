@@ -42,7 +42,12 @@ void MainWindow::replaceWidget(QWidget* oldWidget,
         return;
     }
 
-    old->close();
+    if (!old->close())
+    {
+        showMessageBox("error closing old widget");
+        return;
+    }
+
     delete old;
 }
 
