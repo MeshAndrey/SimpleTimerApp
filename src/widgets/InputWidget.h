@@ -30,6 +30,7 @@ private slots:
     void buttonClicked();
     void clearButtonClicked();
     void okButtonClicked();
+    void deleteButtonClicked();
     void textEdited(const QString &text);
 };
 

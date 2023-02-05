@@ -83,6 +83,8 @@ void InputWidget::initConnections()
             this, &InputWidget::clearButtonClicked);
     connect(okButton, &QPushButton::clicked,
             this, &InputWidget::okButtonClicked);
+    connect(deleteButton, &QPushButton::clicked,
+            this, &InputWidget::deleteButtonClicked);
 }
 
 void InputWidget::clearButtonClicked()
@@ -121,6 +123,11 @@ void InputWidget::okButtonClicked()
 
     mainWindow->replaceWidget((QWidget*)(this),
                               (QWidget*)(new TimerWidget(nameEdit->text(), timerValue, (QWidget*)(this->parent()))));
+}
+
+void InputWidget::deleteButtonClicked()
+{
+    this->close();
 }
 
 int InputWidget::getTimerValue()
