@@ -16,8 +16,9 @@ void InputWidget::initWidgets()
     minsEdit  = new QLineEdit;
     secsEdit  = new QLineEdit;
 
-    clearButton = new QPushButton("Clear");
-    okButton = new QPushButton("Ok");
+    clearButton  = new QPushButton("Clear");
+    okButton     = new QPushButton("Ok");
+    deleteButton = new QPushButton("Delete");
 }
 
 void InputWidget::initLayout()
@@ -62,7 +63,10 @@ void InputWidget::initLayout()
     verLayout->addLayout(timeInputsLayout);
     verLayout->addLayout(gridLayout);
     verLayout->addLayout(bottomHorLayout);
+    verLayout->addWidget(deleteButton);
 
+    setMinimumSize(400, 250);
+    setMaximumSize(400, 300);
     setLayout(verLayout);
 }
 
@@ -79,6 +83,8 @@ void InputWidget::initConnections()
             this, &InputWidget::clearButtonClicked);
     connect(okButton, &QPushButton::clicked,
             this, &InputWidget::okButtonClicked);
+    connect(deleteButton, &QPushButton::clicked,
+            this, &InputWidget::deleteButtonClicked);
 }
 
 void InputWidget::clearButtonClicked()
@@ -113,14 +119,15 @@ void InputWidget::okButtonClicked()
     if (timerValue == 0)
         return;
 
-    if (!this->close())
-    {
-        showMessageBox("Error to close input widget");
-        return;
-    }
+    auto mainWindow = (MainWindow*)(this->parent()->parent()->parent()->parent());
 
-    ((MainWindow*)parent())->setCentralWidget(new TimerWidget(nameEdit->text(),
-                                                              timerValue));
+    mainWindow->replaceWidget((QWidget*)(this),
+                              (QWidget*)(new TimerWidget(nameEdit->text(), timerValue, (QWidget*)(this->parent()))));
+}
+
+void InputWidget::deleteButtonClicked()
+{
+    this->close();
 }
 
 int InputWidget::getTimerValue()
