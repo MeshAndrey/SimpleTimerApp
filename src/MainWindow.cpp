@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     QScrollArea *area = new QScrollArea;
     area->setWidgetResizable(true);
     area->verticalScrollBar()->setVisible(true);
+    area->horizontalScrollBar()->setVisible(false);
     area->setWidget(centralWidget);
 
     setCentralWidget(area);
