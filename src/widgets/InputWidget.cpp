@@ -16,8 +16,9 @@ void InputWidget::initWidgets()
     minsEdit  = new QLineEdit;
     secsEdit  = new QLineEdit;
 
-    clearButton = new QPushButton("Clear");
-    okButton = new QPushButton("Ok");
+    clearButton  = new QPushButton("Clear");
+    okButton     = new QPushButton("Ok");
+    deleteButton = new QPushButton("Delete");
 }
 
 void InputWidget::initLayout()
@@ -62,6 +63,7 @@ void InputWidget::initLayout()
     verLayout->addLayout(timeInputsLayout);
     verLayout->addLayout(gridLayout);
     verLayout->addLayout(bottomHorLayout);
+    verLayout->addWidget(deleteButton);
 
     setMinimumSize(400, 250);
     setMaximumSize(400, 300);

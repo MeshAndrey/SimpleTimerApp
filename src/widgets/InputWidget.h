@@ -13,8 +13,9 @@ private:
               *hoursEdit = nullptr,
               *minsEdit  = nullptr,
               *secsEdit  = nullptr;
-    QPushButton *clearButton = nullptr,
-                *okButton     = nullptr;
+    QPushButton *clearButton  = nullptr,
+                *okButton     = nullptr,
+                *deleteButton = nullptr;
 
     void initWidgets();
     void initLayout();
