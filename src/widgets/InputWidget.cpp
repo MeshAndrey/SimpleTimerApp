@@ -115,8 +115,10 @@ void InputWidget::okButtonClicked()
     if (timerValue == 0)
         return;
 
-    ((MainWindow*)parent())->replaceWidget(this, new TimerWidget(
-                                               nameEdit->text(), timerValue));
+    auto mainWindow = (MainWindow*)(this->parent()->parent()->parent()->parent());
+
+    mainWindow->replaceWidget((QWidget*)(this),
+                              (QWidget*)(new TimerWidget(nameEdit->text(), timerValue, (QWidget*)(this->parent()))));
 }
 
 int InputWidget::getTimerValue()

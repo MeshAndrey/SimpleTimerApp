@@ -55,13 +55,15 @@ void AlarmWidget::stopButtonClicked()
 {
     alarmSound->stop();
 
-    ((MainWindow*)parent())->replaceWidget(this, new InputWidget);
+    auto mainWindow = (MainWindow*)(this->parent()->parent()->parent()->parent());
+    mainWindow->replaceWidget(this, new InputWidget((QWidget*)(this->parent())));
 }
 
 void AlarmWidget::repeatButtonClicked()
 {
     alarmSound->stop();
 
-    ((MainWindow*)parent())->replaceWidget(this,
-                  new TimerWidget(this->name, this->timerValue));
+    auto mainWindow = (MainWindow*)(this->parent()->parent()->parent()->parent());
+    mainWindow->replaceWidget(this,
+                  new TimerWidget(this->name, this->timerValue, (QWidget*)(this->parent())));
 }
