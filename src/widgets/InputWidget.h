@@ -22,6 +22,7 @@ private:
     void initConnections();
     void showMessageBox(QString message);
     int getTimerValue();
+    int parseLineEdit(QLineEdit* edit, bool &ok);
 
 public:
     explicit InputWidget(QWidget *parent = nullptr);

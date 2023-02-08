@@ -138,21 +138,35 @@ int InputWidget::getTimerValue()
         hoursEdit->text().isEmpty())
         return 0;
 
-    bool ok = false;
+    int s = 0, m = 0, h = 0;
 
-    int s = !secsEdit->text().isEmpty()  ? secsEdit->text().toInt(&ok)  : 0;
-    int m = !minsEdit->text().isEmpty()  ? minsEdit->text().toInt(&ok)  : 0;
-    int h = !hoursEdit->text().isEmpty() ? hoursEdit->text().toInt(&ok) : 0;
-
-    if (!ok)
+    for (int i = 0; i < 3; i++)
     {
-        showMessageBox("Error to convert editLineWidget text to int");
-        return 0;
+        bool ok = true;
+        switch (i)
+        {
+            case 0:
+                s = parseLineEdit(secsEdit, ok);  break;
+            case 1:
+                m = parseLineEdit(minsEdit, ok);  break;
+            case 2:
+                h = parseLineEdit(hoursEdit, ok); break;
+        }
+        if (!ok)
+        {
+            showMessageBox("Error to convert editLineWidget text to int");
+            return 0;
+        }
     }
 
     int timerValue = (s + m * 60 + h * 60 * 60) * 1000;
 
     return timerValue;
+}
+
+int InputWidget::parseLineEdit(QLineEdit* edit, bool &ok)
+{
+    return !edit->text().isEmpty() ? edit->text().toInt(&ok) : 0;
 }
 
 void InputWidget::showMessageBox(QString message)
