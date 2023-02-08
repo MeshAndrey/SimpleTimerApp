@@ -121,8 +121,9 @@ void InputWidget::okButtonClicked()
 
     auto mainWindow = (MainWindow*)(this->parent()->parent()->parent()->parent());
 
-    mainWindow->replaceWidget((QWidget*)(this),
-                              (QWidget*)(new TimerWidget(nameEdit->text(), timerValue, (QWidget*)(this->parent()))));
+    mainWindow->replaceWidget(this,
+                              new TimerWidget(nameEdit->text(), timerValue,
+                                              (QWidget*)(this->parent())));
 }
 
 void InputWidget::deleteButtonClicked()
