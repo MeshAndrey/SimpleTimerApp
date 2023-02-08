@@ -106,7 +106,8 @@ void TimerWidget::timerTimeout()
 {
     auto mainWindow = (MainWindow*)(this->parent()->parent()->parent()->parent());
     mainWindow->replaceWidget(this,
-                  new AlarmWidget(this->name, this->timerValue, (QWidget*)(this->parent())));
+                              new AlarmWidget(this->name, this->timerValue,
+                                              (QWidget*)(this->parent())));
 }
 
 void TimerWidget::updateTimerTimeout()
