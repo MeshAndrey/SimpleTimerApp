@@ -119,11 +119,12 @@ void InputWidget::okButtonClicked()
     if (timerValue == 0)
         return;
 
-    auto mainWindow = (MainWindow*)(this->parent()->parent()->parent()->parent());
+    auto mainWindow = static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
 
     mainWindow->replaceWidget(this,
-                              new TimerWidget(nameEdit->text(), timerValue,
-                                              (QWidget*)(this->parent())));
+                              new TimerWidget(nameEdit->text(),
+                                              timerValue,
+                                              static_cast<QWidget*>(this->parent())));
 }
 
 void InputWidget::deleteButtonClicked()
@@ -181,7 +182,7 @@ void InputWidget::showMessageBox(QString message)
 
 void InputWidget::buttonClicked()
 {
-    QString digit = ((QPushButton*)sender())->text();
+    QString digit = static_cast<QPushButton*>(sender())->text();
 
     if (secsEdit->text().length() < 2)
     {
@@ -201,7 +202,7 @@ void InputWidget::textEdited(const QString &text)
 {
     if (text.length() > 2)
     {
-        ((QLineEdit*)sender())->setText(QStringRef(&text, 0, 2).toString());
+        static_cast<QLineEdit*>(sender())->setText(QStringRef(&text, 0, 2).toString());
     }
 }
 
