@@ -23,11 +23,13 @@ void InputWidget::initWidgets()
 
 void InputWidget::initLayout()
 {
-    QHBoxLayout *nameLayout       = new QHBoxLayout;
-    QVBoxLayout *verLayout        = new QVBoxLayout;
-    QHBoxLayout *timeInputsLayout = new QHBoxLayout;
+    QVBoxLayout *centralLayout    = new QVBoxLayout;
+
+    QHBoxLayout *nameLayout       = new QHBoxLayout,
+                *timeInputsLayout = new QHBoxLayout,
+                *bottomHorLayout  = new QHBoxLayout;
+
     QGridLayout *gridLayout       = new QGridLayout;
-    QHBoxLayout *bottomHorLayout  = new QHBoxLayout;
 
     int buttonCounter = 0;
     for (int row = 0; row < 3 ; row++)
@@ -60,15 +62,15 @@ void InputWidget::initLayout()
     bottomHorLayout->addWidget(clearButton);
     bottomHorLayout->addWidget(okButton);
 
-    verLayout->addLayout(nameLayout);
-    verLayout->addLayout(timeInputsLayout);
-    verLayout->addLayout(gridLayout);
-    verLayout->addLayout(bottomHorLayout);
-    verLayout->addWidget(deleteButton);
+    centralLayout->addLayout(nameLayout);
+    centralLayout->addLayout(timeInputsLayout);
+    centralLayout->addLayout(gridLayout);
+    centralLayout->addLayout(bottomHorLayout);
+    centralLayout->addWidget(deleteButton);
 
     setMinimumSize(400, 250);
     setMaximumSize(400, 300);
-    setLayout(verLayout);
+    setLayout(centralLayout);
 }
 
 void InputWidget::initConnections()
