@@ -187,17 +187,17 @@ void InputWidget::buttonClicked()
 {
     QString digit = static_cast<QPushButton*>(sender())->text();
 
-    if (secsEdit->text().length() < 2)
+    if (hoursEdit->text().length() < 2)
     {
-        secsEdit->setText(secsEdit->text() + digit);
+        hoursEdit->setText(hoursEdit->text() + digit);
     }
     else if (minsEdit->text().length() < 2)
     {
         minsEdit->setText(minsEdit->text() + digit);
     }
-    else if (hoursEdit->text().length() < 2)
+    else if (secsEdit->text().length() < 2)
     {
-        hoursEdit->setText(hoursEdit->text() + digit);
+        secsEdit->setText(secsEdit->text() + digit);
     }
 }
 
