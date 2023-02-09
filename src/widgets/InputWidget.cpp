@@ -23,28 +23,29 @@ void InputWidget::initWidgets()
 
 void InputWidget::initLayout()
 {
-    QHBoxLayout *nameLayout = new QHBoxLayout;
-    QVBoxLayout *verLayout = new QVBoxLayout;
+    QHBoxLayout *nameLayout       = new QHBoxLayout;
+    QVBoxLayout *verLayout        = new QVBoxLayout;
     QHBoxLayout *timeInputsLayout = new QHBoxLayout;
-    QGridLayout *gridLayout = new QGridLayout;
-    QHBoxLayout *bottomHorLayout = new QHBoxLayout;
+    QGridLayout *gridLayout       = new QGridLayout;
+    QHBoxLayout *bottomHorLayout  = new QHBoxLayout;
 
     int buttonCounter = 0;
     for (int row = 0; row < 3 ; row++)
     {
         for (int column = 0; column < 3; column++)
         {
-            QPushButton * btn = new QPushButton(QString::number(++buttonCounter));
+            QPushButton* btn = new QPushButton(QString::number(++buttonCounter));
             gridLayout->addWidget(btn, row, column);
-            connect(btn, &QPushButton::clicked,
+            connect(btn,  &QPushButton::clicked,
                     this, &InputWidget::buttonClicked);
         }
     }
 
     QPushButton* zeroButton = new QPushButton("0");
     gridLayout->addWidget(zeroButton, 3, 1);
+
     connect(zeroButton, &QPushButton::clicked,
-            this, &InputWidget::buttonClicked);
+            this,       &InputWidget::buttonClicked);
 
     nameLayout->addWidget(new QLabel("Name:"));
     nameLayout->addWidget(nameEdit);
@@ -73,18 +74,18 @@ void InputWidget::initLayout()
 void InputWidget::initConnections()
 {
     connect(hoursEdit, &QLineEdit::textEdited,
-            this, &InputWidget::textEdited);
-    connect(minsEdit, &QLineEdit::textEdited,
-            this, &InputWidget::textEdited);
-    connect(secsEdit, &QLineEdit::textEdited,
-            this, &InputWidget::textEdited);
+            this,      &InputWidget::textEdited);
+    connect(minsEdit,  &QLineEdit::textEdited,
+            this,      &InputWidget::textEdited);
+    connect(secsEdit,  &QLineEdit::textEdited,
+            this,      &InputWidget::textEdited);
 
-    connect(clearButton, &QPushButton::clicked,
-            this, &InputWidget::clearButtonClicked);
-    connect(okButton, &QPushButton::clicked,
-            this, &InputWidget::okButtonClicked);
+    connect(clearButton,  &QPushButton::clicked,
+            this,         &InputWidget::clearButtonClicked);
+    connect(okButton,     &QPushButton::clicked,
+            this,         &InputWidget::okButtonClicked);
     connect(deleteButton, &QPushButton::clicked,
-            this, &InputWidget::deleteButtonClicked);
+            this,         &InputWidget::deleteButtonClicked);
 }
 
 void InputWidget::clearButtonClicked()
@@ -102,14 +103,14 @@ void InputWidget::okButtonClicked()
         hoursEdit->text().isEmpty())
         return;
 
-    if ( (secsEdit->text() == "00"  || secsEdit->text() == "0") &&
-         (minsEdit->text() == "00"  || minsEdit->text() == "0") &&
+    if ( (secsEdit->text()  == "00" || secsEdit->text()  == "0") &&
+         (minsEdit->text()  == "00" || minsEdit->text()  == "0") &&
          (hoursEdit->text() == "00" || hoursEdit->text() == "0") )
         return;
 
-    if (secsEdit->text() == " " || secsEdit->text() == "  ")
+    if (secsEdit->text() == " "  || secsEdit->text()  == "  ")
         secsEdit->setText("");
-    if (minsEdit->text() == " " || minsEdit->text() == "  ")
+    if (minsEdit->text() == " "  || minsEdit->text()  == "  ")
         minsEdit->setText("");
     if (hoursEdit->text() == " " || hoursEdit->text() == "  ")
         hoursEdit->setText("");

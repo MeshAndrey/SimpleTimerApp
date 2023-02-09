@@ -20,13 +20,13 @@ AlarmWidget::AlarmWidget(QString name, int timerValue, QWidget *parent) : QWidge
 void AlarmWidget::initWidgets()
 {
     repeatButton = new QPushButton("Repeat");
-    stopButton = new QPushButton("Stop");
+    stopButton   = new QPushButton("Stop");
 }
 
 void AlarmWidget::initLayout()
 {
-    QVBoxLayout * centralLayout = new QVBoxLayout;
-    QHBoxLayout * buttonLayout = new QHBoxLayout;
+    QVBoxLayout* centralLayout = new QVBoxLayout;
+    QHBoxLayout* buttonLayout  = new QHBoxLayout;
 
     buttonLayout->addWidget(repeatButton);
     buttonLayout->addWidget(stopButton);
@@ -45,8 +45,8 @@ void AlarmWidget::initLayout()
 
 void AlarmWidget::initConnections()
 {
-    connect(stopButton, &QPushButton::clicked,
-            this,       &AlarmWidget::stopButtonClicked);
+    connect(stopButton,   &QPushButton::clicked,
+            this,         &AlarmWidget::stopButtonClicked);
     connect(repeatButton, &QPushButton::clicked,
             this,         &AlarmWidget::repeatButtonClicked);
 }

@@ -35,7 +35,7 @@ void TimerWidget::initWidgets()
 
 void TimerWidget::initLayout()
 {
-    QVBoxLayout * layout = new QVBoxLayout;
+    QVBoxLayout * layout    = new QVBoxLayout;
     QHBoxLayout * horLayout = new QHBoxLayout;
 
     horLayout->addWidget(pauseResumeButton);
@@ -51,13 +51,14 @@ void TimerWidget::initLayout()
 void TimerWidget::initConnections()
 {
     connect(pauseResumeButton, &QPushButton::clicked,
-            this, &TimerWidget::pauseResumeButtonCLicked);
-    connect(stopButton, &QPushButton::clicked,
-            this, &TimerWidget::stopButtonClicked);
+            this,              &TimerWidget::pauseResumeButtonCLicked);
+    connect(stopButton,        &QPushButton::clicked,
+            this,              &TimerWidget::stopButtonClicked);
 
-    connect(timer, &QTimer::timeout, this, &TimerWidget::timerTimeout);
-    connect(updateTimer, &QTimer::timeout,
-            this, &TimerWidget::updateTimerTimeout);
+    connect(timer,             &QTimer::timeout,
+            this,              &TimerWidget::timerTimeout);
+    connect(updateTimer,       &QTimer::timeout,
+            this,              &TimerWidget::updateTimerTimeout);
 }
 
 void TimerWidget::pauseResumeButtonCLicked()
