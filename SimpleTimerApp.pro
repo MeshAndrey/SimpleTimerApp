@@ -9,6 +9,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/TimeUtils.cpp \
     src/main.cpp \
     src/MainWindow.cpp \
     src/widgets/AlarmWidget.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     src/MainWindow.h \
+    src/TimeUtils.h \
     src/widgets/AlarmWidget.h \
     src/widgets/InputWidget.h \
     src/widgets/TimerWidget.h
