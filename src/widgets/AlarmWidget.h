@@ -19,7 +19,7 @@ private:
     QSound *alarmSound = nullptr;
 
     QElapsedTimer elapsedTimer;
-    QTimer timer;
+    QTimer updateTimer;
 
     void initWidgets();
     void initLayout();
@@ -30,6 +30,7 @@ public:
 private slots:
     void stopButtonClicked();
     void repeatButtonClicked();
+    void updateTimerTimeout();
 signals:
 
 };

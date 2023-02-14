@@ -56,6 +56,8 @@ void AlarmWidget::initConnections()
             this,         &AlarmWidget::stopButtonClicked);
     connect(repeatButton, &QPushButton::clicked,
             this,         &AlarmWidget::repeatButtonClicked);
+    connect(&updateTimer, &QTimer::timeout,
+            this,         &AlarmWidget::updateTimerTimeout);
 }
 
 void AlarmWidget::stopButtonClicked()
@@ -77,3 +79,7 @@ void AlarmWidget::repeatButtonClicked()
                                               static_cast<QWidget*>(this->parent())));
 }
 
+void AlarmWidget::updateTimerTimeout()
+{
+    timeLabel->setText(QString::number(elapsedTimer.elapsed()));
+}
