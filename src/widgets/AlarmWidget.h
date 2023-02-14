@@ -11,11 +11,15 @@ class AlarmWidget : public QWidget
     Q_OBJECT
 private:
     int timerValue = 0;
+
     QString name;
     QPushButton *stopButton   = nullptr,
                 *repeatButton = nullptr;
     QLabel *timeLabel = nullptr;
     QSound *alarmSound = nullptr;
+
+    QElapsedTimer elapsedTimer;
+    QTimer timer;
 
     void initWidgets();
     void initLayout();

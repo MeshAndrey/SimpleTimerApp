@@ -12,6 +12,11 @@ AlarmWidget::AlarmWidget(QString name, int timerValue, QWidget *parent) : QWidge
     initLayout();
     initConnections();
 
+    updateTimer.setInterval(1 * 1000);
+    elapsedTimer.start();
+
+    updateTimer.start();
+
     alarmSound = new QSound(":/sounds/mixkit-urgent-simple-tone-loop-2976.wav");
     alarmSound->setLoops(QSound::Infinite);
     alarmSound->play();
@@ -71,3 +76,4 @@ void AlarmWidget::repeatButtonClicked()
                                               this->timerValue,
                                               static_cast<QWidget*>(this->parent())));
 }
+
