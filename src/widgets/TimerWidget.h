@@ -23,10 +23,6 @@ private:
     void initConnections();
     void showMessageBox(const QString message);
 
-    int round(const int value);
-    QString convertToReadable(const int value);
-    QString makeTimeString(QString time);
-
 private slots:
     void pauseResumeButtonCLicked();
     void stopButtonClicked();
@@ -35,9 +31,6 @@ private slots:
 
 public:
     explicit TimerWidget(QString name, int timerValue, QWidget *parent = nullptr);
-
-signals:
-
 };
 
 #endif // TIMERWIDGET_H
