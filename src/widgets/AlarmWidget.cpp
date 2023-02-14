@@ -21,6 +21,7 @@ void AlarmWidget::initWidgets()
 {
     repeatButton = new QPushButton("Repeat");
     stopButton   = new QPushButton("Stop");
+    timeLabel    = new QLabel;
 }
 
 void AlarmWidget::initLayout()
@@ -33,6 +34,7 @@ void AlarmWidget::initLayout()
 
     centralLayout->addWidget(new QLabel(name),              0, Qt::AlignCenter);
     centralLayout->addWidget(new QLabel("Time is expired"), 0, Qt::AlignCenter);
+    centralLayout->addWidget(timeLabel,                     0, Qt::AlignCenter);
     centralLayout->addLayout(buttonLayout);
 
     QPalette pal = QPalette();
