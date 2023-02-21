@@ -17,6 +17,9 @@ private slots:
     void addButtonClicked();
     void showHideWindow();
 
+protected:
+    virtual void closeEvent(QCloseEvent*);
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();

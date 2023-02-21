@@ -69,6 +69,13 @@ void MainWindow::showHideWindow()
     setVisible(!isVisible());
 }
 
+void MainWindow::closeEvent(QCloseEvent*)
+{
+    if (trayIcon->isVisible()) {
+        hide();
+    }
+}
+
 MainWindow::~MainWindow()
 {
 }
