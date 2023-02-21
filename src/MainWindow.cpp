@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 #include "widgets/InputWidget.h"
 #include <QScrollArea>
+#include <QCloseEvent>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -90,11 +91,24 @@ void MainWindow::showHideWindow()
     setVisible(!isVisible());
 }
 
-void MainWindow::closeEvent(QCloseEvent*)
+/* TODO: Add something like this
+ void MyMainWindow::closeEvent(QCloseEvent *event)
+ {
+     QSettings settings("MyCompany", "MyApp");
+     settings.setValue("geometry", saveGeometry());
+     settings.setValue("windowState", saveState());
+     QMainWindow::closeEvent(event);
+ }
+
+*/
+
+void MainWindow::closeEvent(QCloseEvent* event)
 {
-    if (trayIcon->isVisible()) {
+    QMainWindow::closeEvent(event);
+    if (this->isVisible()) {
         hide();
     }
+    event->ignore();
 }
 
 MainWindow::~MainWindow()

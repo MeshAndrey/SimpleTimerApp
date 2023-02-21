@@ -15,13 +15,11 @@ private:
     QPushButton* addButton = nullptr;
     QSystemTrayIcon* trayIcon;
     QMenu*           trayIconMenu;
-    void closeEvent(QCloseEvent*);
+    void closeEvent(QCloseEvent* event);
+
 private slots:
     void addButtonClicked();
     void showHideWindow();
-
-
-
 
 public:
     MainWindow(QWidget *parent = nullptr);
