@@ -93,11 +93,19 @@ void MainWindow::showHideWindow()
 void MainWindow::showEvent(QShowEvent* event)
 {
     QMainWindow::showEvent(event);
+
+    QSettings settings("MyCompany", "MyApp");
+    this->setGeometry(settings.value("geometry", saveGeometry()).toRect());
+    this->setWindowState((Qt::WindowStates)settings.value("windowState", saveState()).toInt());
 }
 
 void MainWindow::hideEvent(QHideEvent* event)
 {
     QMainWindow::hideEvent(event);
+
+    QSettings settings("MyCompany", "MyApp");
+    settings.setValue("geometry", saveGeometry());
+    settings.setValue("windowState", saveState());
 }
 
 /* TODO: Add something like this
