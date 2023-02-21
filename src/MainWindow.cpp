@@ -90,6 +90,15 @@ void MainWindow::showHideWindow()
 {
     setVisible(!isVisible());
 }
+void MainWindow::showEvent(QShowEvent* event)
+{
+    QMainWindow::showEvent(event);
+}
+
+void MainWindow::hideEvent(QHideEvent* event)
+{
+    QMainWindow::hideEvent(event);
+}
 
 /* TODO: Add something like this
  void MyMainWindow::closeEvent(QCloseEvent *event)

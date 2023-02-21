@@ -15,6 +15,9 @@ private:
     QPushButton* addButton = nullptr;
     QSystemTrayIcon* trayIcon;
     QMenu*           trayIconMenu;
+
+    void showEvent(QShowEvent* event);
+    void hideEvent(QHideEvent* event);
     void closeEvent(QCloseEvent* event);
 
 private slots:
