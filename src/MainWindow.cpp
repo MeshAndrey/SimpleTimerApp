@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     area->horizontalScrollBar()->setVisible(false);
     area->setWidget(centralWidget);
 
+    setWindowIcon(QIcon(":/images/timer.png"));
     setCentralWidget(area);
 }
 
