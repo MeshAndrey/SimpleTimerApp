@@ -23,6 +23,27 @@ MainWindow::MainWindow(QWidget *parent)
     area->setWidget(centralWidget);
 
     setWindowIcon(QIcon(":/images/timer.png"));
+
+    QAction* showHideAction =
+        new QAction("&Show/Hide Application Window", this);
+
+    connect(showHideAction, &QAction::triggered,
+            this,           &MainWindow::showHideWindow);
+
+    QAction* quitAction = new QAction("&Quit", this);
+    connect(quitAction, &QAction::triggered,
+            qApp,       &QApplication::quit);
+
+    trayIconMenu = new QMenu(this);
+    trayIconMenu->addAction(showHideAction);
+    trayIconMenu->addAction(quitAction);
+
+    trayIcon = new QSystemTrayIcon(this);
+    trayIcon->setContextMenu(trayIconMenu);
+    trayIcon->setToolTip("Timer app");
+    trayIcon->setIcon(QIcon(":/images/timer.png"));
+    trayIcon->show();
+
     setCentralWidget(area);
 }
 
