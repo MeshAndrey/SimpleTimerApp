@@ -15,6 +15,7 @@ private:
 
 private slots:
     void addButtonClicked();
+    void showHideWindow();
 
 public:
     MainWindow(QWidget *parent = nullptr);

@@ -64,6 +64,11 @@ void MainWindow::showMessageBox(QString message)
     msg.exec();
 }
 
+void MainWindow::showHideWindow()
+{
+    setVisible(!isVisible());
+}
+
 MainWindow::~MainWindow()
 {
 }
