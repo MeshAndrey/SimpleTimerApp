@@ -12,10 +12,13 @@ private:
     QLineEdit *nameEdit  = nullptr,
               *hoursEdit = nullptr,
               *minsEdit  = nullptr,
-              *secsEdit  = nullptr;
+              *secsEdit  = nullptr,
+              *shellCommandEdit = nullptr;
     QPushButton *clearButton  = nullptr,
                 *okButton     = nullptr,
                 *deleteButton = nullptr;
+    QCheckBox *execShellCommandCheckBox = nullptr,
+              *autoStopAlarmCheckBox    = nullptr;
 
     void initWidgets();
     void initLayout();

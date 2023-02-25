@@ -15,10 +15,14 @@ void InputWidget::initWidgets()
     hoursEdit = new QLineEdit;
     minsEdit  = new QLineEdit;
     secsEdit  = new QLineEdit;
+    shellCommandEdit = new QLineEdit;
 
     clearButton  = new QPushButton("Clear");
     okButton     = new QPushButton("Ok");
     deleteButton = new QPushButton("Delete");
+
+    execShellCommandCheckBox = new QCheckBox("Exec shell command on alarm");
+    autoStopAlarmCheckBox = new QCheckBox("Auto stop alarm");
 }
 
 void InputWidget::initLayout()
@@ -66,10 +70,13 @@ void InputWidget::initLayout()
     centralLayout->addLayout(timeInputsLayout);
     centralLayout->addLayout(gridLayout);
     centralLayout->addLayout(bottomHorLayout);
+    centralLayout->addWidget(execShellCommandCheckBox);
+    centralLayout->addWidget(shellCommandEdit);
+    centralLayout->addWidget(autoStopAlarmCheckBox);
     centralLayout->addWidget(deleteButton);
 
     setMinimumSize(400, 250);
-    setMaximumSize(400, 300);
+    setMaximumSize(400, 400);
     setLayout(centralLayout);
 }
 
