@@ -95,6 +95,9 @@ void InputWidget::initConnections()
             this,         &InputWidget::okButtonClicked);
     connect(deleteButton, &QPushButton::clicked,
             this,         &InputWidget::deleteButtonClicked);
+
+    connect(execShellCommandCheckBox, &QCheckBox::stateChanged,
+            this,                     &InputWidget::execShellCheckBoxStateChanged);
 }
 
 void InputWidget::clearButtonClicked()
@@ -214,5 +217,22 @@ void InputWidget::textEdited(const QString &text)
     {
         static_cast<QLineEdit*>(sender())->setText(QStringRef(&text, 0, 2).toString());
     }
+}
+
+void InputWidget::execShellCheckBoxStateChanged(int state)
+{
+    bool visibility = false;
+
+    if (state == Qt::Checked)
+    {
+        visibility = true;
+    }
+    else if (state == Qt::Unchecked)
+    {
+        visibility = false;
+    }
+
+    shellCommandEdit->setVisible(visibility);
+    autoStopAlarmCheckBox->setVisible(visibility);
 }
 

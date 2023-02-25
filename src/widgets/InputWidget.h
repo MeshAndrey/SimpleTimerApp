@@ -36,6 +36,7 @@ private slots:
     void okButtonClicked();
     void deleteButtonClicked();
     void textEdited(const QString &text);
+    void execShellCheckBoxStateChanged(int state);
 };
 
 #endif // INPUTWIDGET_H
