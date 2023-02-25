@@ -95,8 +95,8 @@ void MainWindow::showEvent(QShowEvent* event)
     QMainWindow::showEvent(event);
 
     QSettings settings("MyCompany", "MyApp");
-    this->setGeometry(settings.value("geometry", saveGeometry()).toRect());
-    this->setWindowState((Qt::WindowStates)settings.value("windowState", saveState()).toInt());
+    this->restoreGeometry(settings.value("geometry").toByteArray());
+    this->restoreState(settings.value("windowState").toByteArray());
 }
 
 void MainWindow::hideEvent(QHideEvent* event)
@@ -107,17 +107,6 @@ void MainWindow::hideEvent(QHideEvent* event)
     settings.setValue("geometry", saveGeometry());
     settings.setValue("windowState", saveState());
 }
-
-/* TODO: Add something like this
- void MyMainWindow::closeEvent(QCloseEvent *event)
- {
-     QSettings settings("MyCompany", "MyApp");
-     settings.setValue("geometry", saveGeometry());
-     settings.setValue("windowState", saveState());
-     QMainWindow::closeEvent(event);
- }
-
-*/
 
 void MainWindow::closeEvent(QCloseEvent* event)
 {
