@@ -58,6 +58,11 @@ void MainWindow::addButtonClicked()
 void MainWindow::replaceWidget(QWidget* oldWidget,
                                QWidget* newWidget)
 {
+    if (!this->isVisible())
+    {
+        show();
+    }
+
     auto old = layout->replaceWidget(oldWidget, newWidget, Qt::FindDirectChildrenOnly)->widget();
 
     if (old == nullptr)
@@ -111,6 +116,7 @@ void MainWindow::hideEvent(QHideEvent* event)
 void MainWindow::closeEvent(QCloseEvent* event)
 {
     QMainWindow::closeEvent(event);
+
     if (this->isVisible()) {
         hide();
     }
