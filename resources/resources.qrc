@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>sounds/mixkit-urgent-simple-tone-loop-2976.wav</file>
+        <file>images/timer.png</file>
     </qresource>
 </RCC>

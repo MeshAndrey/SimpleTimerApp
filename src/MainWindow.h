@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <QSystemTrayIcon>
 
 class MainWindow : public QMainWindow
 {
@@ -12,9 +13,16 @@ private:
     QVBoxLayout *layout = nullptr;
     QWidget *centralWidget = nullptr;
     QPushButton* addButton = nullptr;
+    QSystemTrayIcon* trayIcon;
+    QMenu*           trayIconMenu;
+
+    void showEvent(QShowEvent* event);
+    void hideEvent(QHideEvent* event);
+    void closeEvent(QCloseEvent* event);
 
 private slots:
     void addButtonClicked();
+    void showHideWindow();
 
 public:
     MainWindow(QWidget *parent = nullptr);
