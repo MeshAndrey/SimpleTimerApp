@@ -75,6 +75,9 @@ void InputWidget::initLayout()
     centralLayout->addWidget(autoStopAlarmCheckBox);
     centralLayout->addWidget(deleteButton);
 
+    shellCommandEdit->setVisible(false);
+    autoStopAlarmCheckBox->setVisible(false);
+
     setMinimumSize(400, 250);
     setMaximumSize(400, 400);
     setLayout(centralLayout);
