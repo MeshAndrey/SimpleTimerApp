@@ -5,11 +5,13 @@
 #include "../TimeUtils.h"
 
 TimerWidget::TimerWidget(QString name, int timerValue,
-                         QString shellCommand, bool autoStop,
+                         QString shellCommand, bool autoStopAlarm,
                          QWidget *parent) : QWidget(parent)
 {
     this->name = name;
     this->timerValue = timerValue;
+    this->shellCommand = shellCommand;
+    this->autoStopAlarm = autoStopAlarm;
 
     initWidgets();
     initConnections();
@@ -110,10 +112,20 @@ void TimerWidget::stopButtonClicked()
 void TimerWidget::timerTimeout()
 {
     auto mainWindow = static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
-    mainWindow->replaceWidget(this,
-                              new AlarmWidget(this->name,
-                                              this->timerValue,
-                                              static_cast<QWidget*>(this->parent())));
+
+    if (autoStopAlarm)
+    {
+        // add qprocess here
+        mainWindow->replaceWidget(this,
+                                  new InputWidget(static_cast<QWidget*>(this->parent())));
+    }
+    else
+    {
+        mainWindow->replaceWidget(this,
+                                  new AlarmWidget(this->name,
+                                                  this->timerValue,
+                                                  static_cast<QWidget*>(this->parent())));
+    }
 }
 
 void TimerWidget::updateTimerTimeout()
