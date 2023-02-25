@@ -4,7 +4,9 @@
 #include "../MainWindow.h"
 #include "../TimeUtils.h"
 
-TimerWidget::TimerWidget(QString name, int timerValue, QWidget *parent) : QWidget(parent)
+TimerWidget::TimerWidget(QString name, int timerValue,
+                         QString shellCommand, bool autoStop,
+                         QWidget *parent) : QWidget(parent)
 {
     this->name = name;
     this->timerValue = timerValue;

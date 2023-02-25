@@ -30,7 +30,9 @@ private slots:
     void updateTimerTimeout();
 
 public:
-    explicit TimerWidget(QString name, int timerValue, QWidget *parent = nullptr);
+    explicit TimerWidget(QString name, int timerValue,
+                         QString shellCommand, bool autoStop,
+                         QWidget *parent = nullptr);
 };
 
 #endif // TIMERWIDGET_H
