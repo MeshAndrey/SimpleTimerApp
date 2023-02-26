@@ -95,6 +95,7 @@ void MainWindow::showHideWindow()
 {
     setVisible(!isVisible());
 }
+
 void MainWindow::showEvent(QShowEvent* event)
 {
     QMainWindow::showEvent(event);

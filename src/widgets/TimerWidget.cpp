@@ -4,10 +4,14 @@
 #include "../MainWindow.h"
 #include "../TimeUtils.h"
 
-TimerWidget::TimerWidget(QString name, int timerValue, QWidget *parent) : QWidget(parent)
+TimerWidget::TimerWidget(QString name, int timerValue,
+                         QString shellCommand, bool autoStopAlarm,
+                         QWidget *parent) : QWidget(parent)
 {
     this->name = name;
     this->timerValue = timerValue;
+    this->shellCommand = shellCommand;
+    this->autoStopAlarm = autoStopAlarm;
 
     initWidgets();
     initConnections();
@@ -107,11 +111,53 @@ void TimerWidget::stopButtonClicked()
 
 void TimerWidget::timerTimeout()
 {
+    if (!shellCommand.isEmpty())
+        executeProcess(shellCommand);
+
     auto mainWindow = static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
-    mainWindow->replaceWidget(this,
-                              new AlarmWidget(this->name,
-                                              this->timerValue,
-                                              static_cast<QWidget*>(this->parent())));
+
+    if (autoStopAlarm)
+    {
+        mainWindow->replaceWidget(this,
+                                  new InputWidget(static_cast<QWidget*>(this->parent())));
+    }
+    else
+    {
+        mainWindow->replaceWidget(this,
+                                  new AlarmWidget(this->name,
+                                                  this->timerValue,
+                                                  static_cast<QWidget*>(this->parent())));
+    }
+}
+
+void TimerWidget::executeProcess(const QString program)
+{
+    if (program == "")
+    {
+        showMessageBox("Empty program param");
+        return;
+    }
+
+    QStringList splitedProgramCommand = program.split(" ");
+    QString appName = splitedProgramCommand[0];
+    splitedProgramCommand.removeAt(0);
+    QStringList appArgs = splitedProgramCommand;
+
+    QProcess* process = new QProcess;
+
+    if (appArgs.length() == 0)
+        process->start(appName, QStringList());
+    else if (appArgs.length() == 1 && appArgs[0].isEmpty())
+        process->start(appName, QStringList());
+    else
+        process->start(appName, appArgs);
+
+    if (process->waitForStarted(3000)) // if ok
+        return;
+
+    showMessageBox(QString("Process %1 %2 not started")
+                      .arg(program, splitedProgramCommand.join(" ")));
+    delete process;
 }
 
 void TimerWidget::updateTimerTimeout()

@@ -15,10 +15,14 @@ void InputWidget::initWidgets()
     hoursEdit = new QLineEdit;
     minsEdit  = new QLineEdit;
     secsEdit  = new QLineEdit;
+    shellCommandEdit = new QLineEdit;
 
     clearButton  = new QPushButton("Clear");
     okButton     = new QPushButton("Ok");
     deleteButton = new QPushButton("Delete");
+
+    execShellCommandCheckBox = new QCheckBox("Exec shell command on alarm");
+    autoStopAlarmCheckBox = new QCheckBox("Auto stop alarm");
 }
 
 void InputWidget::initLayout()
@@ -65,11 +69,17 @@ void InputWidget::initLayout()
     centralLayout->addLayout(nameLayout);
     centralLayout->addLayout(timeInputsLayout);
     centralLayout->addLayout(gridLayout);
+    centralLayout->addWidget(execShellCommandCheckBox);
+    centralLayout->addWidget(shellCommandEdit);
+    centralLayout->addWidget(autoStopAlarmCheckBox);
     centralLayout->addLayout(bottomHorLayout);
     centralLayout->addWidget(deleteButton);
 
+    shellCommandEdit->setVisible(false);
+    autoStopAlarmCheckBox->setVisible(false);
+
     setMinimumSize(400, 250);
-    setMaximumSize(400, 300);
+    setMaximumSize(400, 400);
     setLayout(centralLayout);
 }
 
@@ -88,6 +98,9 @@ void InputWidget::initConnections()
             this,         &InputWidget::okButtonClicked);
     connect(deleteButton, &QPushButton::clicked,
             this,         &InputWidget::deleteButtonClicked);
+
+    connect(execShellCommandCheckBox, &QCheckBox::stateChanged,
+            this,                     &InputWidget::execShellCheckBoxStateChanged);
 }
 
 void InputWidget::clearButtonClicked()
@@ -127,6 +140,8 @@ void InputWidget::okButtonClicked()
     mainWindow->replaceWidget(this,
                               new TimerWidget(nameEdit->text(),
                                               timerValue,
+                                              shellCommandEdit->text(),
+                                              autoStopAlarmCheckBox->isChecked(),
                                               static_cast<QWidget*>(this->parent())));
 }
 
@@ -207,5 +222,22 @@ void InputWidget::textEdited(const QString &text)
     {
         static_cast<QLineEdit*>(sender())->setText(QStringRef(&text, 0, 2).toString());
     }
+}
+
+void InputWidget::execShellCheckBoxStateChanged(int state)
+{
+    bool visibility = false;
+
+    if (state == Qt::Checked)
+    {
+        visibility = true;
+    }
+    else if (state == Qt::Unchecked)
+    {
+        visibility = false;
+    }
+
+    shellCommandEdit->setVisible(visibility);
+    autoStopAlarmCheckBox->setVisible(visibility);
 }
 

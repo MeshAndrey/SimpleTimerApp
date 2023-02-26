@@ -10,7 +10,9 @@ class TimerWidget : public QWidget
     Q_OBJECT
 private:
     int timerValue = 0;
-    QString name;
+    bool autoStopAlarm = false;
+    QString name,
+            shellCommand;
     QLabel *remainingTimeLabel = nullptr;
     QPushButton *pauseResumeButton = nullptr,
                 *stopButton        = nullptr;
@@ -22,6 +24,7 @@ private:
     void initLayout();
     void initConnections();
     void showMessageBox(const QString message);
+    void executeProcess(const QString program);
 
 private slots:
     void pauseResumeButtonCLicked();
@@ -30,7 +33,9 @@ private slots:
     void updateTimerTimeout();
 
 public:
-    explicit TimerWidget(QString name, int timerValue, QWidget *parent = nullptr);
+    explicit TimerWidget(QString name, int timerValue,
+                         QString shellCommand, bool autoStopAlarm,
+                         QWidget *parent = nullptr);
 };
 
 #endif // TIMERWIDGET_H
