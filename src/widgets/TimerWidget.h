@@ -12,7 +12,7 @@ private:
     int timerValue = 0;
     bool autoStopAlarm = false;
     QString name,
-            shellComand;
+            shellCommand;
     QLabel *remainingTimeLabel = nullptr;
     QPushButton *pauseResumeButton = nullptr,
                 *stopButton        = nullptr;
