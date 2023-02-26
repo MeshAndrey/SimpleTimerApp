@@ -111,11 +111,13 @@ void TimerWidget::stopButtonClicked()
 
 void TimerWidget::timerTimeout()
 {
+    if (!shellCommand.isEmpty())
+        executeProcess(shellCommand);
+
     auto mainWindow = static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
 
     if (autoStopAlarm)
     {
-        // add qprocess here
         mainWindow->replaceWidget(this,
                                   new InputWidget(static_cast<QWidget*>(this->parent())));
     }
@@ -132,7 +134,7 @@ void TimerWidget::executeProcess(const QString program)
 {
     if (program == "")
     {
-        showMessageBox(tr("Process not started"));
+        showMessageBox("Empty program param");
         return;
     }
 
@@ -145,7 +147,6 @@ void TimerWidget::executeProcess(const QString program)
 
     if (process->waitForStarted(3000)) // if ok
         return;
-
 
     showMessageBox(QString("Process %1 %2 not started")
                       .arg(program, splitedProgramCommand.join(" ")));
