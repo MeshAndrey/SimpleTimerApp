@@ -69,10 +69,10 @@ void InputWidget::initLayout()
     centralLayout->addLayout(nameLayout);
     centralLayout->addLayout(timeInputsLayout);
     centralLayout->addLayout(gridLayout);
-    centralLayout->addLayout(bottomHorLayout);
     centralLayout->addWidget(execShellCommandCheckBox);
     centralLayout->addWidget(shellCommandEdit);
     centralLayout->addWidget(autoStopAlarmCheckBox);
+    centralLayout->addLayout(bottomHorLayout);
     centralLayout->addWidget(deleteButton);
 
     shellCommandEdit->setVisible(false);
