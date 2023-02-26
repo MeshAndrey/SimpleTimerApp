@@ -77,6 +77,8 @@ void AlarmWidget::repeatButtonClicked()
     mainWindow->replaceWidget(this,
                               new TimerWidget(this->name,
                                               this->timerValue,
+                                              "",
+                                              false,
                                               static_cast<QWidget*>(this->parent())));
 }
 

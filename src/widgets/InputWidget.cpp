@@ -140,6 +140,8 @@ void InputWidget::okButtonClicked()
     mainWindow->replaceWidget(this,
                               new TimerWidget(nameEdit->text(),
                                               timerValue,
+                                              shellCommandEdit->text(),
+                                              autoStopAlarmCheckBox->isChecked(),
                                               static_cast<QWidget*>(this->parent())));
 }
 
