@@ -141,9 +141,16 @@ void TimerWidget::executeProcess(const QString program)
     QStringList splitedProgramCommand = program.split(" ");
     QString appName = splitedProgramCommand[0];
     splitedProgramCommand.removeAt(0);
+    QStringList appArgs = splitedProgramCommand;
 
     QProcess* process = new QProcess;
-    process->start(appName, splitedProgramCommand); // run program as separate process
+
+    if (appArgs.length() == 0)
+        process->start(appName, QStringList());
+    else if (appArgs.length() == 1 && appArgs[0].isEmpty())
+        process->start(appName, QStringList());
+    else
+        process->start(appName, appArgs);
 
     if (process->waitForStarted(3000)) // if ok
         return;
