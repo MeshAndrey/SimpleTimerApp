@@ -128,6 +128,30 @@ void TimerWidget::timerTimeout()
     }
 }
 
+void TimerWidget::executeProcess(const QString program)
+{
+    if (program == "")
+    {
+        showMessageBox(tr("Process not started"));
+        return;
+    }
+
+    QStringList splitedProgramCommand = program.split(" ");
+    QString appName = splitedProgramCommand[0];
+    splitedProgramCommand.removeAt(0);
+
+    QProcess* process = new QProcess;
+    process->start(appName, splitedProgramCommand); // run program as separate process
+
+    if (process->waitForStarted(3000)) // if ok
+        return;
+
+
+    showMessageBox(QString("Process %1 %2 not started")
+                      .arg(program, splitedProgramCommand.join(" ")));
+    delete process;
+}
+
 void TimerWidget::updateTimerTimeout()
 {
     if (timer->isActive())

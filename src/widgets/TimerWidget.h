@@ -24,6 +24,7 @@ private:
     void initLayout();
     void initConnections();
     void showMessageBox(const QString message);
+    void executeProcess(const QString program);
 
 private slots:
     void pauseResumeButtonCLicked();
