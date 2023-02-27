@@ -93,7 +93,7 @@ void MainWindow::showMessageBox(QString message)
 
 void MainWindow::showNotification(QString title, QString message)
 {
-    trayIcon->showMessage(title, message, QSystemTrayIcon::Information, 3000);
+    trayIcon->showMessage(title, message, QSystemTrayIcon::Information, 5000);
 }
 
 void MainWindow::showHideWindow()
