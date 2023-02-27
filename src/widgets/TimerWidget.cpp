@@ -115,6 +115,7 @@ void TimerWidget::timerTimeout()
         executeProcess(shellCommand);
 
     auto mainWindow = static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
+    mainWindow->showNotification(name, QString("\"%1\" was executed").arg(shellCommand));
 
     if (autoStopAlarm)
     {
