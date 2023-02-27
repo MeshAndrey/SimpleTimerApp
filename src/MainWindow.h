@@ -32,5 +32,6 @@ public:
                        QWidget* newWidget);
 
     void showMessageBox(QString message);
+    void showNotification(QString title, QString message);
 };
 #endif // MAINWINDOW_H
