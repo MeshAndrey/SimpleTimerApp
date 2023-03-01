@@ -26,7 +26,7 @@ private:
     void initLayout();
     void initConnections();
     void showMessageBox(const QString message);
-    void executeProcess(const QString program);
+    bool executeProcess(const QString program);
 
     MainWindow* getMainWindow();
 
