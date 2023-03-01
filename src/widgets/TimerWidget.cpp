@@ -117,13 +117,23 @@ void TimerWidget::stopButtonClicked()
 
 void TimerWidget::timerTimeout()
 {
+    bool ok = false;
     if (!shellCommand.isEmpty())
-        executeProcess(shellCommand);
+        ok = executeProcess(shellCommand);
 
     auto mainWindow = getMainWindow();
     if (mainWindow == nullptr)
     {
         showMessageBox("MainWindow is nullptr");
+        return;
+    }
+
+    if (!ok)
+    {
+        const QString message = QString("Process \"%1\" not started")
+                                    .arg(shellCommand);
+        showMessageBox(message);
+        mainWindow->showErrorNotification(name, message);
         return;
     }
 
@@ -143,12 +153,12 @@ void TimerWidget::timerTimeout()
     }
 }
 
-void TimerWidget::executeProcess(const QString program)
+bool TimerWidget::executeProcess(const QString program)
 {
     if (program == "")
     {
         showMessageBox("Empty program param");
-        return;
+        return false;
     }
 
     QStringList splitedProgramCommand = program.split(" ");
@@ -166,22 +176,10 @@ void TimerWidget::executeProcess(const QString program)
         process->start(appName, appArgs);
 
     if (process->waitForStarted(3000)) // if ok
-        return;
-
-    const QString message = QString("Process %1 %2 not started")
-                                .arg(program, splitedProgramCommand.join(" "));
-    showMessageBox(message);
-
-    auto mainWindow = getMainWindow();
-    if (mainWindow == nullptr)
-    {
-        showMessageBox("MainWindow is nullptr");
-        return;
-    }
-
-    mainWindow->showErrorNotification(name, message);
+        return true;
 
     delete process;
+    return false;
 }
 
 void TimerWidget::updateTimerTimeout()
