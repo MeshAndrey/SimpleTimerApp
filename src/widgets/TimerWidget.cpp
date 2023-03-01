@@ -179,7 +179,7 @@ void TimerWidget::executeProcess(const QString program)
         return;
     }
 
-    mainWindow->showNotification(name, message);
+    mainWindow->showErrorNotification(name, message);
 
     delete process;
 }
