@@ -1,7 +1,7 @@
 #include "TimerWidget.h"
 #include "AlarmWidget.h"
 #include "InputWidget.h"
-#include "../MainWindow.h"
+
 #include "../TimeUtils.h"
 
 TimerWidget::TimerWidget(QString name, int timerValue,
@@ -105,7 +105,7 @@ void TimerWidget::stopButtonClicked()
     updateTimer->stop();
     timer->stop();
 
-    auto mainWindow = static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
+    auto mainWindow = getMainWindow();
     mainWindow->replaceWidget(this, new InputWidget(static_cast<QWidget*>(this->parent())));
 }
 
@@ -114,7 +114,13 @@ void TimerWidget::timerTimeout()
     if (!shellCommand.isEmpty())
         executeProcess(shellCommand);
 
-    auto mainWindow = static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
+    auto mainWindow = getMainWindow();
+    if (mainWindow == nullptr)
+    {
+        showMessageBox("MainWindow is nullptr");
+        return;
+    }
+
     mainWindow->showNotification(name, QString("\"%1\" was executed").arg(shellCommand));
 
     if (autoStopAlarm)
@@ -176,4 +182,9 @@ void TimerWidget::showMessageBox(const QString message)
     QMessageBox msg;
     msg.setText(message);
     msg.exec();
+}
+
+MainWindow* TimerWidget::getMainWindow()
+{
+    return static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
 }
