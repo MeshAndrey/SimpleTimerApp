@@ -168,8 +168,19 @@ void TimerWidget::executeProcess(const QString program)
     if (process->waitForStarted(3000)) // if ok
         return;
 
-    showMessageBox(QString("Process %1 %2 not started")
-                      .arg(program, splitedProgramCommand.join(" ")));
+    const QString message = QString("Process %1 %2 not started")
+                                .arg(program, splitedProgramCommand.join(" "));
+    showMessageBox(message);
+
+    auto mainWindow = getMainWindow();
+    if (mainWindow == nullptr)
+    {
+        showMessageBox("MainWindow is nullptr");
+        return;
+    }
+
+    mainWindow->showNotification(name, message);
+
     delete process;
 }
 
