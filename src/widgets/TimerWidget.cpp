@@ -134,10 +134,9 @@ void TimerWidget::timerTimeout()
                                     .arg(shellCommand);
         showMessageBox(message);
         mainWindow->showErrorNotification(name, message);
-        return;
     }
-
-    mainWindow->showNotification(name, QString("\"%1\" was executed").arg(shellCommand));
+    else
+        mainWindow->showNotification(name, QString("\"%1\" was executed").arg(shellCommand));
 
     if (autoStopAlarm)
     {
