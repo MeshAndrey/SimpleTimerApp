@@ -106,6 +106,12 @@ void TimerWidget::stopButtonClicked()
     timer->stop();
 
     auto mainWindow = getMainWindow();
+    if (mainWindow == nullptr)
+    {
+        showMessageBox("MainWindow is nullptr");
+        return;
+    }
+
     mainWindow->replaceWidget(this, new InputWidget(static_cast<QWidget*>(this->parent())));
 }
 
