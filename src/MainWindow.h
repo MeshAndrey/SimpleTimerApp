@@ -34,5 +34,6 @@ public:
 
     void showMessageBox(QString message);
     void showNotification(QString title, QString message);
+    void showErrorNotification(QString title, QString message);
 };
 #endif // MAINWINDOW_H
