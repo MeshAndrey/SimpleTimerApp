@@ -117,10 +117,6 @@ void TimerWidget::stopButtonClicked()
 
 void TimerWidget::timerTimeout()
 {
-    bool ok = false;
-    if (!shellCommand.isEmpty())
-        ok = executeProcess(shellCommand);
-
     auto mainWindow = getMainWindow();
     if (mainWindow == nullptr)
     {
@@ -128,15 +124,18 @@ void TimerWidget::timerTimeout()
         return;
     }
 
-    if (!ok)
+    if (!shellCommand.isEmpty())
     {
-        const QString message = QString("Process \"%1\" not started")
-                                    .arg(shellCommand);
-        showMessageBox(message);
-        mainWindow->showErrorNotification(name, message);
+        if (!executeProcess(shellCommand))
+        {
+            const QString message = QString("Process \"%1\" not started")
+                                        .arg(shellCommand);
+            showMessageBox(message);
+            mainWindow->showErrorNotification(name, message);
+        }
+        else
+            mainWindow->showNotification(name, QString("\"%1\" was executed").arg(shellCommand));
     }
-    else
-        mainWindow->showNotification(name, QString("\"%1\" was executed").arg(shellCommand));
 
     if (autoStopAlarm)
     {
