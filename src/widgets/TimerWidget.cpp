@@ -105,8 +105,8 @@ void TimerWidget::stopButtonClicked()
     updateTimer->stop();
     timer->stop();
 
-    auto mainWindow = static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
-    mainWindow->replaceWidget(this, new InputWidget(static_cast<QWidget*>(this->parent())));
+    auto mainWindow = qobject_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
+    mainWindow->replaceWidget(this, new InputWidget(qobject_cast<QWidget*>(this->parent())));
 }
 
 void TimerWidget::timerTimeout()
@@ -114,19 +114,19 @@ void TimerWidget::timerTimeout()
     if (!shellCommand.isEmpty())
         executeProcess(shellCommand);
 
-    auto mainWindow = static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
+    auto mainWindow = qobject_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
 
     if (autoStopAlarm)
     {
         mainWindow->replaceWidget(this,
-                                  new InputWidget(static_cast<QWidget*>(this->parent())));
+                                  new InputWidget(qobject_cast<QWidget*>(this->parent())));
     }
     else
     {
         mainWindow->replaceWidget(this,
                                   new AlarmWidget(this->name,
                                                   this->timerValue,
-                                                  static_cast<QWidget*>(this->parent())));
+                                                  qobject_cast<QWidget*>(this->parent())));
     }
 }
 
