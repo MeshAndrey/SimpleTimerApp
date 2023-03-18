@@ -178,5 +178,5 @@ void TimerWidget::showMessageBox(const QString message)
 
 MainWindow* TimerWidget::getMainWindow()
 {
-    return static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
+    return qobject_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
 }
