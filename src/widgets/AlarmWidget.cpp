@@ -65,7 +65,7 @@ void AlarmWidget::stopButtonClicked()
 {
     alarmSound->stop();
 
-    auto mainWindow = static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
+    auto mainWindow = qobject_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
     mainWindow->replaceWidget(this, new InputWidget(static_cast<QWidget*>(this->parent())));
 }
 
@@ -73,7 +73,7 @@ void AlarmWidget::repeatButtonClicked()
 {
     alarmSound->stop();
 
-    auto mainWindow = static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
+    auto mainWindow = qobject_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
     mainWindow->replaceWidget(this,
                               new TimerWidget(this->name,
                                               this->timerValue,
