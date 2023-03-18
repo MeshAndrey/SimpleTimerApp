@@ -1,7 +1,7 @@
 #include "TimerWidget.h"
 #include "AlarmWidget.h"
 #include "InputWidget.h"
-#include "../MainWindow.h"
+
 #include "../TimeUtils.h"
 
 TimerWidget::TimerWidget(QString name, int timerValue,
@@ -130,12 +130,12 @@ void TimerWidget::timerTimeout()
     }
 }
 
-void TimerWidget::executeProcess(const QString program)
+bool TimerWidget::executeProcess(const QString program)
 {
     if (program == "")
     {
         showMessageBox("Empty program param");
-        return;
+        return false;
     }
 
     QStringList splitedProgramCommand = program.split(" ");
@@ -153,11 +153,10 @@ void TimerWidget::executeProcess(const QString program)
         process->start(appName, appArgs);
 
     if (process->waitForStarted(3000)) // if ok
-        return;
+        return true;
 
-    showMessageBox(QString("Process %1 %2 not started")
-                      .arg(program, splitedProgramCommand.join(" ")));
     delete process;
+    return false;
 }
 
 void TimerWidget::updateTimerTimeout()
@@ -175,4 +174,9 @@ void TimerWidget::showMessageBox(const QString message)
     QMessageBox msg;
     msg.setText(message);
     msg.exec();
+}
+
+MainWindow* TimerWidget::getMainWindow()
+{
+    return static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
 }

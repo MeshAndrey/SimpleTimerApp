@@ -16,13 +16,14 @@ private:
     QSystemTrayIcon* trayIcon;
     QMenu*           trayIconMenu;
 
-    void showEvent(QShowEvent* event);
-    void hideEvent(QHideEvent* event);
-    void closeEvent(QCloseEvent* event);
-
 private slots:
     void addButtonClicked();
     void showHideWindow();
+
+protected:
+    void showEvent(QShowEvent* event);
+    void hideEvent(QHideEvent* event);
+    void closeEvent(QCloseEvent* event);
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -32,5 +33,7 @@ public:
                        QWidget* newWidget);
 
     void showMessageBox(QString message);
+    void showNotification(QString title, QString message);
+    void showErrorNotification(QString title, QString message);
 };
 #endif // MAINWINDOW_H
