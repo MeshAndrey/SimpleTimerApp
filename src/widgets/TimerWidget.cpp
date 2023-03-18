@@ -105,49 +105,28 @@ void TimerWidget::stopButtonClicked()
     updateTimer->stop();
     timer->stop();
 
-    auto mainWindow = getMainWindow();
-    if (mainWindow == nullptr)
-    {
-        showMessageBox("MainWindow is nullptr");
-        return;
-    }
-
-    mainWindow->replaceWidget(this, new InputWidget(static_cast<QWidget*>(this->parent())));
+    auto mainWindow = qobject_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
+    mainWindow->replaceWidget(this, new InputWidget(qobject_cast<QWidget*>(this->parent())));
 }
 
 void TimerWidget::timerTimeout()
 {
-    auto mainWindow = getMainWindow();
-    if (mainWindow == nullptr)
-    {
-        showMessageBox("MainWindow is nullptr");
-        return;
-    }
-
     if (!shellCommand.isEmpty())
-    {
-        if (!executeProcess(shellCommand))
-        {
-            const QString message = QString("Process \"%1\" not started")
-                                        .arg(shellCommand);
-            showMessageBox(message);
-            mainWindow->showErrorNotification(name, message);
-        }
-        else
-            mainWindow->showNotification(name, QString("\"%1\" was executed").arg(shellCommand));
-    }
+        executeProcess(shellCommand);
+
+    auto mainWindow = qobject_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
 
     if (autoStopAlarm)
     {
         mainWindow->replaceWidget(this,
-                                  new InputWidget(static_cast<QWidget*>(this->parent())));
+                                  new InputWidget(qobject_cast<QWidget*>(this->parent())));
     }
     else
     {
         mainWindow->replaceWidget(this,
                                   new AlarmWidget(this->name,
                                                   this->timerValue,
-                                                  static_cast<QWidget*>(this->parent())));
+                                                  qobject_cast<QWidget*>(this->parent())));
     }
 }
 

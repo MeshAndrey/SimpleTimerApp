@@ -135,14 +135,14 @@ void InputWidget::okButtonClicked()
     if (timerValue == 0)
         return;
 
-    auto mainWindow = static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
+    auto mainWindow = qobject_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
 
     mainWindow->replaceWidget(this,
                               new TimerWidget(nameEdit->text(),
                                               timerValue,
                                               shellCommandEdit->text(),
                                               autoStopAlarmCheckBox->isChecked(),
-                                              static_cast<QWidget*>(this->parent())));
+                                              qobject_cast<QWidget*>(this->parent())));
 }
 
 void InputWidget::deleteButtonClicked()
@@ -200,7 +200,7 @@ void InputWidget::showMessageBox(QString message)
 
 void InputWidget::buttonClicked()
 {
-    QString digit = static_cast<QPushButton*>(sender())->text();
+    QString digit = qobject_cast<QPushButton*>(sender())->text();
 
     if (hoursEdit->text().length() < 2)
     {
@@ -220,7 +220,7 @@ void InputWidget::textEdited(const QString &text)
 {
     if (text.length() > 2)
     {
-        static_cast<QLineEdit*>(sender())->setText(QStringRef(&text, 0, 2).toString());
+        qobject_cast<QLineEdit*>(sender())->setText(QStringRef(&text, 0, 2).toString());
     }
 }
 
