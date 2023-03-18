@@ -91,6 +91,16 @@ void MainWindow::showMessageBox(QString message)
     msg.exec();
 }
 
+void MainWindow::showNotification(QString title, QString message)
+{
+    trayIcon->showMessage(title, message, QSystemTrayIcon::Information, 5000);
+}
+
+void MainWindow::showErrorNotification(QString title, QString message)
+{
+    trayIcon->showMessage(title, message, QSystemTrayIcon::Critical, 5000);
+}
+
 void MainWindow::showHideWindow()
 {
     setVisible(!isVisible());

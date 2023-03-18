@@ -1,7 +1,7 @@
 #include "TimerWidget.h"
 #include "AlarmWidget.h"
 #include "InputWidget.h"
-#include "../MainWindow.h"
+
 #include "../TimeUtils.h"
 
 TimerWidget::TimerWidget(QString name, int timerValue,
@@ -105,16 +105,37 @@ void TimerWidget::stopButtonClicked()
     updateTimer->stop();
     timer->stop();
 
-    auto mainWindow = static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
+    auto mainWindow = getMainWindow();
+    if (mainWindow == nullptr)
+    {
+        showMessageBox("MainWindow is nullptr");
+        return;
+    }
+
     mainWindow->replaceWidget(this, new InputWidget(static_cast<QWidget*>(this->parent())));
 }
 
 void TimerWidget::timerTimeout()
 {
-    if (!shellCommand.isEmpty())
-        executeProcess(shellCommand);
+    auto mainWindow = getMainWindow();
+    if (mainWindow == nullptr)
+    {
+        showMessageBox("MainWindow is nullptr");
+        return;
+    }
 
-    auto mainWindow = static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
+    if (!shellCommand.isEmpty())
+    {
+        if (!executeProcess(shellCommand))
+        {
+            const QString message = QString("Process \"%1\" not started")
+                                        .arg(shellCommand);
+            showMessageBox(message);
+            mainWindow->showErrorNotification(name, message);
+        }
+        else
+            mainWindow->showNotification(name, QString("\"%1\" was executed").arg(shellCommand));
+    }
 
     if (autoStopAlarm)
     {
@@ -130,12 +151,12 @@ void TimerWidget::timerTimeout()
     }
 }
 
-void TimerWidget::executeProcess(const QString program)
+bool TimerWidget::executeProcess(const QString program)
 {
     if (program == "")
     {
         showMessageBox("Empty program param");
-        return;
+        return false;
     }
 
     QStringList splitedProgramCommand = program.split(" ");
@@ -153,11 +174,10 @@ void TimerWidget::executeProcess(const QString program)
         process->start(appName, appArgs);
 
     if (process->waitForStarted(3000)) // if ok
-        return;
+        return true;
 
-    showMessageBox(QString("Process %1 %2 not started")
-                      .arg(program, splitedProgramCommand.join(" ")));
     delete process;
+    return false;
 }
 
 void TimerWidget::updateTimerTimeout()
@@ -175,4 +195,9 @@ void TimerWidget::showMessageBox(const QString message)
     QMessageBox msg;
     msg.setText(message);
     msg.exec();
+}
+
+MainWindow* TimerWidget::getMainWindow()
+{
+    return static_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
 }

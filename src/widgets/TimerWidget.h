@@ -5,6 +5,8 @@
 #include <QWidget>
 #include <QtWidgets>
 
+#include "../MainWindow.h"
+
 class TimerWidget : public QWidget
 {
     Q_OBJECT
@@ -24,7 +26,9 @@ private:
     void initLayout();
     void initConnections();
     void showMessageBox(const QString message);
-    void executeProcess(const QString program);
+    bool executeProcess(const QString program);
+
+    MainWindow* getMainWindow();
 
 private slots:
     void pauseResumeButtonCLicked();
