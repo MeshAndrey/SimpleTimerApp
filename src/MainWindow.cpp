@@ -33,13 +33,15 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::initMenuBar()
 {
-    QMenu* appMenu = new QMenu("App");
-    QMenu* timerMenu = new QMenu("Timer");
+    QMenu* appMenu      = new QMenu("App");
+    QMenu* timerMenu    = new QMenu("Timer");
     QMenu* settingsMenu = new QMenu("Settings");
+    QMenu* helpMenu     = new QMenu("Help");
 
     this->menuBar()->addMenu(appMenu);
     this->menuBar()->addMenu(timerMenu);
     this->menuBar()->addMenu(settingsMenu);
+    this->menuBar()->addMenu(helpMenu);
 
     QAction* showHideAction = new QAction("&Hide Application Window", this);
     showHideAction->setShortcut(Qt::CTRL + Qt::Key_H);
@@ -48,7 +50,7 @@ void MainWindow::initMenuBar()
     quitAction->setShortcut(Qt::CTRL + Qt::Key_Q);
 
     QAction* addTimerAction = new QAction("&Add timer", this);
-    addTimerAction->setShortcut(Qt::CTRL + Qt::Key_T);
+    addTimerAction->setShortcut(Qt::CTRL + Qt::Key_E);
 
     QAction* settingsAction = new QAction("&Settings", this);
     settingsAction->setShortcut(Qt::CTRL + Qt::Key_T);
@@ -64,6 +66,7 @@ void MainWindow::initMenuBar()
     appMenu->addAction(quitAction);
     timerMenu->addAction(addTimerAction);
     settingsMenu->addAction(settingsAction);
+    helpMenu->addAction(tr("About Qt"), this, qApp->aboutQt);
 }
 
 void MainWindow::initTrayIcon()
