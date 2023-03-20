@@ -78,7 +78,7 @@ void InputWidget::initLayout()
     shellCommandEdit->setVisible(false);
     autoStopAlarmCheckBox->setVisible(false);
 
-    setMinimumSize(400, 250);
+    setMinimumSize(400, 300);
     setMaximumSize(400, 400);
     setLayout(centralLayout);
 }
