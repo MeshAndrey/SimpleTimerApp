@@ -33,7 +33,23 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::initMenuBar()
 {
+    QMenu* appMenu = new QMenu("App");
+    this->menuBar()->addMenu(appMenu);
 
+    QAction* showHideAction =
+        new QAction("&Hide Application Window", this);
+    showHideAction->setShortcut(Qt::CTRL + Qt::Key_H);
+
+    connect(showHideAction, &QAction::triggered,
+            this,           &MainWindow::showHideWindow);
+
+    QAction* quitAction = new QAction("&Quit", this);
+    quitAction->setShortcut(Qt::CTRL + Qt::Key_Q);
+    connect(quitAction, &QAction::triggered,
+            qApp,       &QApplication::quit);
+
+    appMenu->addAction(showHideAction);
+    appMenu->addAction(quitAction);
 }
 
 void MainWindow::initTrayIcon()
