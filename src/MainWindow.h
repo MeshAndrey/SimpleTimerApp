@@ -17,6 +17,7 @@ private:
     QMenu*           trayIconMenu;
     void initMenuBar();
     void initTrayIcon();
+    void showSettingsWindow();
 
 private slots:
     void addButtonClicked();

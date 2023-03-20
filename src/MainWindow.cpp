@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "widgets/InputWidget.h"
+#include "widgets/SettingsWidget.h"
 #include <QScrollArea>
 #include <QCloseEvent>
 
@@ -61,6 +62,8 @@ void MainWindow::initMenuBar()
             qApp,           &QApplication::quit);
     connect(addTimerAction, &QAction::triggered,
             this,           &MainWindow::addButtonClicked);
+    connect(settingsAction, &QAction::triggered,
+            this,           &MainWindow::showSettingsWindow);
 
     appMenu->addAction(showHideAction);
     appMenu->addAction(quitAction);
@@ -90,6 +93,12 @@ void MainWindow::initTrayIcon()
     trayIcon->setToolTip("Timer app");
     trayIcon->setIcon(QIcon(":/images/timer.png"));
     trayIcon->show();
+}
+
+void MainWindow::showSettingsWindow()
+{
+    SettingsWidget* settingsWidget = new SettingsWidget;
+    settingsWidget->show();
 }
 
 void MainWindow::addButtonClicked()
