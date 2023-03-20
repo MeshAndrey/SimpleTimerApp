@@ -34,22 +34,32 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::initMenuBar()
 {
     QMenu* appMenu = new QMenu("App");
+    QMenu* timerMenu = new QMenu("Timer");
+
     this->menuBar()->addMenu(appMenu);
+    this->menuBar()->addMenu(timerMenu);
 
     QAction* showHideAction =
         new QAction("&Hide Application Window", this);
     showHideAction->setShortcut(Qt::CTRL + Qt::Key_H);
 
-    connect(showHideAction, &QAction::triggered,
-            this,           &MainWindow::showHideWindow);
-
     QAction* quitAction = new QAction("&Quit", this);
     quitAction->setShortcut(Qt::CTRL + Qt::Key_Q);
-    connect(quitAction, &QAction::triggered,
-            qApp,       &QApplication::quit);
+
+    QAction* addTimerAction =
+        new QAction("&Add timer", this);
+    addTimerAction->setShortcut(Qt::CTRL + Qt::Key_A);
+
+    connect(showHideAction, &QAction::triggered,
+            this,           &MainWindow::showHideWindow);
+    connect(quitAction,     &QAction::triggered,
+            qApp,           &QApplication::quit);
+    connect(addTimerAction, &QAction::triggered,
+            this,           &MainWindow::addButtonClicked);
 
     appMenu->addAction(showHideAction);
     appMenu->addAction(quitAction);
+    timerMenu->addAction(addTimerAction);
 }
 
 void MainWindow::initTrayIcon()
