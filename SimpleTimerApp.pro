@@ -14,6 +14,7 @@ SOURCES += \
     src/MainWindow.cpp \
     src/widgets/AlarmWidget.cpp \
     src/widgets/InputWidget.cpp \
+    src/widgets/SettingsWidget.cpp \
     src/widgets/TimerWidget.cpp
 
 HEADERS += \
@@ -21,6 +22,7 @@ HEADERS += \
     src/TimeUtils.h \
     src/widgets/AlarmWidget.h \
     src/widgets/InputWidget.h \
+    src/widgets/SettingsWidget.h \
     src/widgets/TimerWidget.h
 
 # Default rules for deployment.
