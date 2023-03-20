@@ -25,6 +25,19 @@ MainWindow::MainWindow(QWidget *parent)
 
     setWindowIcon(QIcon(":/images/timer.png"));
 
+    initTrayIcon();
+    initMenuBar();
+
+    setCentralWidget(area);
+}
+
+void MainWindow::initMenuBar()
+{
+
+}
+
+void MainWindow::initTrayIcon()
+{
     QAction* showHideAction =
         new QAction("&Show/Hide Application Window", this);
 
@@ -44,8 +57,6 @@ MainWindow::MainWindow(QWidget *parent)
     trayIcon->setToolTip("Timer app");
     trayIcon->setIcon(QIcon(":/images/timer.png"));
     trayIcon->show();
-
-    setCentralWidget(area);
 }
 
 void MainWindow::addButtonClicked()
