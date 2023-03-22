@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     QHBoxLayout *centralLayout = new QHBoxLayout;
     tableView = new QTableView;
     addButton = new QPushButton("+");
-    centralWidget = new QWidget;
+    QWidget *centralWidget = new QWidget;
     QWidget *rightWidget = new QWidget;
 
     leftLayout->addWidget(tableView);
