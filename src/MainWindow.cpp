@@ -7,13 +7,19 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    layout = new QVBoxLayout;
-    layout->addWidget(new InputWidget(), 0, Qt::AlignCenter | Qt::AlignTop);
+    leftLayout = new QVBoxLayout;
+    rightLayout = new QVBoxLayout;
+    QHBoxLayout *centralLayout = new QHBoxLayout;
+
+    centralLayout->addLayout(leftLayout, 0);
+    centralLayout->addLayout(rightLayout, 1);
+
+    rightLayout->addWidget(new InputWidget(), 0, Qt::AlignCenter | Qt::AlignTop);
 
     addButton = new QPushButton("+");
-    layout->addWidget(addButton, 1, Qt::AlignCenter | Qt::AlignTop);
+    rightLayout->addWidget(addButton, 1, Qt::AlignCenter | Qt::AlignTop);
     centralWidget = new QWidget;
-    centralWidget->setLayout(layout);
+    centralWidget->setLayout(centralLayout);
 
     connect(addButton, &QPushButton::clicked,
             this, &MainWindow::addButtonClicked);
@@ -103,9 +109,9 @@ void MainWindow::showSettingsWindow()
 
 void MainWindow::addButtonClicked()
 {
-    layout->removeWidget(addButton);
-    layout->addWidget(new InputWidget(), 0, Qt::AlignCenter | Qt::AlignTop);
-    layout->addWidget(addButton, 1, Qt::AlignCenter | Qt::AlignTop);
+    rightLayout->removeWidget(addButton);
+    rightLayout->addWidget(new InputWidget(), 0, Qt::AlignCenter | Qt::AlignTop);
+    rightLayout->addWidget(addButton, 1, Qt::AlignCenter | Qt::AlignTop);
 }
 
 void MainWindow::replaceWidget(QWidget* oldWidget,
@@ -116,7 +122,9 @@ void MainWindow::replaceWidget(QWidget* oldWidget,
         show();
     }
 
-    auto old = layout->replaceWidget(oldWidget, newWidget, Qt::FindDirectChildrenOnly)->widget();
+    auto old = rightLayout->replaceWidget(oldWidget,
+                                          newWidget,
+                                          Qt::FindDirectChildrenOnly)->widget();
 
     if (old == nullptr)
     {

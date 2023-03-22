@@ -10,9 +10,10 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 private:
-    QVBoxLayout *layout = nullptr;
+    QVBoxLayout *leftLayout  = nullptr,
+                *rightLayout = nullptr;
     QWidget *centralWidget = nullptr;
-    QPushButton* addButton = nullptr;
+    QPushButton* addButton = nullptr;    
     QSystemTrayIcon* trayIcon;
     QMenu*           trayIconMenu;
     void initMenuBar();
