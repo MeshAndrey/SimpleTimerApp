@@ -2,8 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QVBoxLayout>
-#include <QPushButton>
+#include <QtWidgets>
 #include <QSystemTrayIcon>
 
 class MainWindow : public QMainWindow
@@ -13,7 +12,8 @@ private:
     QVBoxLayout *leftLayout  = nullptr,
                 *rightLayout = nullptr;
     QWidget *centralWidget = nullptr;
-    QPushButton* addButton = nullptr;    
+    QPushButton* addButton = nullptr;
+    QTableView *tableView = nullptr;
     QSystemTrayIcon* trayIcon;
     QMenu*           trayIconMenu;
     void initMenuBar();
