@@ -10,16 +10,17 @@ MainWindow::MainWindow(QWidget *parent)
     leftLayout = new QVBoxLayout;
     rightLayout = new QVBoxLayout;
     QHBoxLayout *centralLayout = new QHBoxLayout;
+    tableView = new QTableView;
+    addButton = new QPushButton("+");
+    centralWidget = new QWidget;
+    QWidget *rightWidget = new QWidget;
 
-    centralLayout->addLayout(leftLayout, 0);
-    centralLayout->addLayout(rightLayout, 1);
+    leftLayout->addWidget(tableView);
 
     rightLayout->addWidget(new InputWidget(), 0, Qt::AlignCenter | Qt::AlignTop);
-
-    addButton = new QPushButton("+");
     rightLayout->addWidget(addButton, 1, Qt::AlignCenter | Qt::AlignTop);
-    centralWidget = new QWidget;
-    centralWidget->setLayout(centralLayout);
+
+    rightWidget->setLayout(rightLayout);
 
     connect(addButton, &QPushButton::clicked,
             this, &MainWindow::addButtonClicked);
@@ -28,14 +29,19 @@ MainWindow::MainWindow(QWidget *parent)
     area->setWidgetResizable(true);
     area->verticalScrollBar()->setVisible(true);
     area->horizontalScrollBar()->setVisible(false);
-    area->setWidget(centralWidget);
+    area->setWidget(rightWidget);
+
+    centralLayout->addLayout(leftLayout, 0);
+    centralLayout->addWidget(area, 1);
+
+    centralWidget->setLayout(centralLayout);
 
     setWindowIcon(QIcon(":/images/timer.png"));
 
     initTrayIcon();
     initMenuBar();
 
-    setCentralWidget(area);
+    setCentralWidget(centralWidget);
 }
 
 void MainWindow::initMenuBar()
