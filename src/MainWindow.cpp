@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "widgets/InputWidget.h"
+#include "widgets/SettingsWidget.h"
 #include <QScrollArea>
 #include <QCloseEvent>
 
@@ -25,6 +26,54 @@ MainWindow::MainWindow(QWidget *parent)
 
     setWindowIcon(QIcon(":/images/timer.png"));
 
+    initTrayIcon();
+    initMenuBar();
+
+    setCentralWidget(area);
+}
+
+void MainWindow::initMenuBar()
+{
+    QMenu* appMenu      = new QMenu("App");
+    QMenu* timerMenu    = new QMenu("Timer");
+    QMenu* settingsMenu = new QMenu("Settings");
+    QMenu* helpMenu     = new QMenu("Help");
+
+    this->menuBar()->addMenu(appMenu);
+    this->menuBar()->addMenu(timerMenu);
+    this->menuBar()->addMenu(settingsMenu);
+    this->menuBar()->addMenu(helpMenu);
+
+    QAction* showHideAction = new QAction("&Hide Application Window", this);
+    showHideAction->setShortcut(Qt::CTRL + Qt::Key_H);
+
+    QAction* quitAction = new QAction("&Quit", this);
+    quitAction->setShortcut(Qt::CTRL + Qt::Key_Q);
+
+    QAction* addTimerAction = new QAction("&Add timer", this);
+    addTimerAction->setShortcut(Qt::CTRL + Qt::Key_E);
+
+    QAction* settingsAction = new QAction("&Settings", this);
+    settingsAction->setShortcut(Qt::CTRL + Qt::Key_T);
+
+    connect(showHideAction, &QAction::triggered,
+            this,           &MainWindow::showHideWindow);
+    connect(quitAction,     &QAction::triggered,
+            qApp,           &QApplication::quit);
+    connect(addTimerAction, &QAction::triggered,
+            this,           &MainWindow::addButtonClicked);
+    connect(settingsAction, &QAction::triggered,
+            this,           &MainWindow::showSettingsWindow);
+
+    appMenu->addAction(showHideAction);
+    appMenu->addAction(quitAction);
+    timerMenu->addAction(addTimerAction);
+    settingsMenu->addAction(settingsAction);
+    helpMenu->addAction(tr("About Qt"), this, qApp->aboutQt);
+}
+
+void MainWindow::initTrayIcon()
+{
     QAction* showHideAction =
         new QAction("&Show/Hide Application Window", this);
 
@@ -44,8 +93,12 @@ MainWindow::MainWindow(QWidget *parent)
     trayIcon->setToolTip("Timer app");
     trayIcon->setIcon(QIcon(":/images/timer.png"));
     trayIcon->show();
+}
 
-    setCentralWidget(area);
+void MainWindow::showSettingsWindow()
+{
+    SettingsWidget* settingsWidget = new SettingsWidget;
+    settingsWidget->show();
 }
 
 void MainWindow::addButtonClicked()
