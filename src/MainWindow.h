@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QtWidgets>
+#include <QtSql>
 #include <QSystemTrayIcon>
 
 class MainWindow : public QMainWindow
@@ -14,6 +15,7 @@ private:
     QTableView*  tableView   = nullptr;
     QSystemTrayIcon* trayIcon;
     QMenu*           trayIconMenu;
+    QSqlQueryModel model;
 
     void initMenuBar();
     void initTrayIcon();

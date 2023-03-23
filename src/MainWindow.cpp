@@ -3,7 +3,7 @@
 #include "widgets/SettingsWidget.h"
 #include <QScrollArea>
 #include <QCloseEvent>
-#include <QtSql>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -52,6 +52,18 @@ void MainWindow::initDB()
     {
         qApp->closeAllWindows();
     }
+
+    model.setQuery("SELECT name "
+                   "FROM timers "
+                   "ORDER BY date DESC, time DESC;"
+                  );
+
+    if (model.lastError().isValid())
+    {
+        qDebug() << model.lastError();
+    }
+
+    tableView->setModel(&model);
 }
 
 void MainWindow::initMenuBar()
@@ -223,6 +235,30 @@ bool MainWindow::createDBConnection()
         qDebug() << "Cannot open database:" << db.lastError();
         return false;
     }
+
+    if (db.tables().contains(QLatin1String("timers")))
+    {
+        return true;
+    }
+
+    QString   str  = "CREATE TABLE timers ( "
+                         "date TEXT, "
+                         "time TEXT, "
+                         "name TEXT, "
+                         "hours INTEGER NOT NULL, "
+                         "minutes INTEGER NOT NULL, "
+                         "seconds INTEGER NOT NULL, "
+                         "shellcmd TEXT"
+                     ");";
+
+    QSqlQuery query = db.exec(str);
+
+    if (!query.exec(str))
+    {
+        qDebug() << "Unable to create a table";
+        return false;
+    }
+
     return true;
 }
 
