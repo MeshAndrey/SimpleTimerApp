@@ -17,6 +17,7 @@ private:
 
     void initMenuBar();
     void initTrayIcon();
+    void initDB();
     void showSettingsWindow();
     bool createDBConnection();
 

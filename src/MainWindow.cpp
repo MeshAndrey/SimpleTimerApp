@@ -41,9 +41,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     initTrayIcon();
     initMenuBar();
+    initDB();
 
     setCentralWidget(centralWidget);
+}
 
+void MainWindow::initDB()
+{
     if (!createDBConnection())
     {
         qApp->closeAllWindows();
