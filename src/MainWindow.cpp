@@ -7,13 +7,13 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    leftLayout = new QVBoxLayout;
+    QVBoxLayout* leftLayout = new QVBoxLayout;
     rightLayout = new QVBoxLayout;
-    QHBoxLayout *centralLayout = new QHBoxLayout;
+    QHBoxLayout* centralLayout = new QHBoxLayout;
+    QWidget* centralWidget = new QWidget;
+    QWidget* rightWidget = new QWidget;
     tableView = new QTableView;
     addButton = new QPushButton("+");
-    QWidget *centralWidget = new QWidget;
-    QWidget *rightWidget = new QWidget;
 
     leftLayout->addWidget(tableView);
 
