@@ -3,6 +3,7 @@
 #include "widgets/SettingsWidget.h"
 #include <QScrollArea>
 #include <QCloseEvent>
+#include <QtSql>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
