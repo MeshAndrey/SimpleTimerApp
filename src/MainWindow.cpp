@@ -43,6 +43,11 @@ MainWindow::MainWindow(QWidget *parent)
     initMenuBar();
 
     setCentralWidget(centralWidget);
+
+    if (!createDBConnection())
+    {
+        qApp->closeAllWindows();
+    }
 }
 
 void MainWindow::initMenuBar()
@@ -200,6 +205,21 @@ void MainWindow::closeEvent(QCloseEvent* event)
         hide();
     }
     event->ignore();
+}
+
+bool MainWindow::createDBConnection()
+{
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("timers");
+
+    db.setUserName("timer"); // rewrite this // add to settings widget
+    db.setHostName("timer");
+    db.setPassword("timer");
+    if (!db.open()) {
+        qDebug() << "Cannot open database:" << db.lastError();
+        return false;
+    }
+    return true;
 }
 
 MainWindow::~MainWindow()

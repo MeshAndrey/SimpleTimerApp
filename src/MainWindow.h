@@ -14,9 +14,11 @@ private:
     QTableView*  tableView   = nullptr;
     QSystemTrayIcon* trayIcon;
     QMenu*           trayIconMenu;
+
     void initMenuBar();
     void initTrayIcon();
     void showSettingsWindow();
+    bool createDBConnection();
 
 private slots:
     void addButtonClicked();
