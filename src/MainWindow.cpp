@@ -253,7 +253,7 @@ bool MainWindow::createDBConnection()
 
     QSqlQuery query = db.exec(str);
 
-    if (!query.exec(str))
+    if (!query.isValid())
     {
         qDebug() << "Unable to create a table";
         return false;
