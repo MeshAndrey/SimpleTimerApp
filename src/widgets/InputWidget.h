@@ -5,6 +5,8 @@
 #include <QWidget>
 #include <QtWidgets>
 
+#include "../MainWindow.h"
+
 class InputWidget : public QWidget
 {
     Q_OBJECT
@@ -27,6 +29,7 @@ private:
     void insertToDB(QString name, QString h, QString m, QString s, QString timerTime, QString shellcmd);
     int getTimerValue();
     int parseLineEdit(QLineEdit* edit, bool &ok);
+    MainWindow* getMainWindow();
 
 public:
     explicit InputWidget(QWidget *parent = nullptr);

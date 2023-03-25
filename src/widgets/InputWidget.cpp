@@ -1,5 +1,4 @@
 #include "InputWidget.h"
-#include "../MainWindow.h"
 #include "../TimeUtils.h"
 #include "TimerWidget.h"
 
@@ -136,7 +135,7 @@ void InputWidget::okButtonClicked()
     if (timerValue == 0)
         return;
 
-    auto mainWindow = qobject_cast<MainWindow*>(this->parent()->parent()->parent()->parent()->parent());
+    auto mainWindow = getMainWindow();
     if (mainWindow == nullptr)
     {
         return;
@@ -154,17 +153,25 @@ void InputWidget::okButtonClicked()
 
 void InputWidget::insertToDB(QString name, QString h, QString m, QString s, QString timerTime, QString shellcmd)
 {
-    QString formatStr = "INSERT INTO timers (date, time, name, hours, minutes, seconds, timerTime, shellcmd) "
-                        "VALUES(date('now', 'localtime'), time('now', 'localtime'), '%1', '%2', '%3', '%4', '%5', '%6');";
+//    QString formatStr = "INSERT INTO timers (date, time, name, hours, minutes, seconds, timerTime, shellcmd) "
+//                        "VALUES(date('now', 'localtime'), time('now', 'localtime'), '%1', '%2', '%3', '%4', '%5', '%6');";
 
-    QString str = formatStr.arg(name, h, m, s, timerTime, shellcmd);
-    QSqlQuery query;
+//    QString str = formatStr.arg(name, h, m, s, timerTime, shellcmd);
+//    QSqlQuery query;
 
-    if (!query.exec(str))
+//    if (!query.exec(str))
+//    {
+//        qDebug() << "Unable to execute query - exiting";
+//        return;
+//    }
+    auto mainWindow = getMainWindow();
+    if (mainWindow == nullptr)
     {
-        qDebug() << "Unable to execute query - exiting";
+        qDebug() << "Main window is nullptr in input widget";
         return;
     }
+
+    mainWindow->insertRow();
 }
 
 void InputWidget::deleteButtonClicked()
@@ -263,3 +270,7 @@ void InputWidget::execShellCheckBoxStateChanged(int state)
     autoStopAlarmCheckBox->setVisible(visibility);
 }
 
+MainWindow* InputWidget::getMainWindow()
+{
+    return qobject_cast<MainWindow*>(this->parent()->parent()->parent()->parent()->parent());
+}

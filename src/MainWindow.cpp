@@ -296,6 +296,50 @@ bool MainWindow::createDBConnection()
     return true;
 }
 
+void MainWindow::insertRow()
+{
+    //model->insertRow(0);
+
+    QSqlRecord record;
+
+    QSqlField date("date", QVariant::String);
+    date.setValue("25.03.2023");
+    record.append(date);
+
+    QSqlField time("time", QVariant::String);
+    time.setValue("22:00");
+    record.append(time);
+
+    QSqlField name("name", QVariant::String);
+    name.setValue("test-3");
+    record.append(name);
+
+    QSqlField hours("hours", QVariant::Int);
+    hours.setValue(0);
+    record.append(hours);
+
+    QSqlField minutes("minutes", QVariant::Int);
+    minutes.setValue(0);
+    record.append(minutes);
+
+    QSqlField seconds("seconds", QVariant::Int);
+    seconds.setValue(0);
+    record.append(seconds);
+
+    QSqlField timerTime("timerTime", QVariant::String);
+    timerTime.setValue("5");
+    record.append(timerTime);
+
+    QSqlField shellcmd("shellcmd", QVariant::String);
+    shellcmd.setValue("test_shell_cmd");
+    record.append(shellcmd);
+
+    if (!model->insertRecord(0, record))
+    {
+        qDebug() << "Fail to insert record in model";
+    }
+}
+
 MainWindow::~MainWindow()
 {
 }
