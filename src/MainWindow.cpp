@@ -231,9 +231,11 @@ void MainWindow::closeEvent(QCloseEvent* event)
 {
     QMainWindow::closeEvent(event);
 
-    if (this->isVisible()) {
+    if (this->isVisible())
+    {
         hide();
     }
+
     event->ignore();
 }
 
@@ -245,7 +247,8 @@ bool MainWindow::createDBConnection()
     db.setUserName("timer"); // rewrite this // add to settings widget
     db.setHostName("timer");
     db.setPassword("timer");
-    if (!db.open()) {
+    if (!db.open())
+    {
         qDebug() << "Cannot open database:" << db.lastError();
         return false;
     }
