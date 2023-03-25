@@ -67,17 +67,33 @@ void MainWindow::initDB()
         qApp->closeAllWindows();
     }
 
-    model.setQuery("SELECT name, timerTime, shellcmd "
-                   "FROM timers "
-                   "ORDER BY date DESC, time DESC;"
-                  );
+//    model.setQuery("SELECT name, timerTime, shellcmd "
+//                   "FROM timers "
+//                   "ORDER BY date DESC, time DESC;"
+//                  );
+    model = new QSqlTableModel(this, db);
+    model->setTable("timers");
+    model->setSort(0, Qt::DescendingOrder);
+    //model->setSort(1, Qt::DescendingOrder);
 
-    if (model.lastError().isValid())
+    if (!model->select())
     {
-        qDebug() << model.lastError();
+        qDebug() << "Model not selected data from " << model->tableName() << " table";
     }
 
-    tableView->setModel(&model);
+    //model.setQuery()
+
+    if (model->lastError().isValid())
+    {
+        qDebug() << model->lastError();
+    }
+
+    tableView->setModel(model);
+    tableView->hideColumn(0);
+    tableView->hideColumn(1);
+    tableView->hideColumn(3);
+    tableView->hideColumn(4);
+    tableView->hideColumn(5);
 }
 
 void MainWindow::initMenuBar()
@@ -241,7 +257,7 @@ void MainWindow::closeEvent(QCloseEvent* event)
 
 bool MainWindow::createDBConnection()
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("timers");
 
     db.setUserName("timer"); // rewrite this // add to settings widget

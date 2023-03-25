@@ -13,9 +13,10 @@ private:
     QVBoxLayout* rightLayout = nullptr;
     QPushButton* addButton   = nullptr;
     QTableView*  tableView   = nullptr;
-    QSystemTrayIcon* trayIcon;
-    QMenu*           trayIconMenu;
-    QSqlQueryModel model;
+    QSystemTrayIcon* trayIcon = nullptr;
+    QMenu*           trayIconMenu = nullptr;
+    QSqlDatabase db;
+    QSqlTableModel* model = nullptr;
 
     void initMenuBar();
     void initTrayIcon();
