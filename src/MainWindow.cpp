@@ -13,16 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
     QHBoxLayout* centralLayout = new QHBoxLayout;
     QWidget* centralWidget = new QWidget;
     QWidget* rightWidget = new QWidget;
-    tableView = new QTableView;
+    tableView = initTableView();
     addButton = new QPushButton("+");
-
-    tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); // no editing in table
-    tableView->setSelectionBehavior(QAbstractItemView::SelectItems); // selecting ONLY items
-    tableView->setSelectionMode(QAbstractItemView::SingleSelection); // only SINGLE items per selection
-    tableView->setDragDropMode(QAbstractItemView::NoDragDrop); // no drag'n'drop event support
-    tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    tableView->verticalHeader()->setVisible(false);
-    tableView->setFocusPolicy(Qt::NoFocus);
 
     leftLayout->addWidget(tableView);
 
@@ -52,6 +44,20 @@ MainWindow::MainWindow(QWidget *parent)
     initDB();
 
     setCentralWidget(centralWidget);
+}
+QTableView* MainWindow::initTableView()
+{
+    QTableView* tableView = new QTableView;
+
+    tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); // no editing in table
+    tableView->setSelectionBehavior(QAbstractItemView::SelectItems); // selecting ONLY items
+    tableView->setSelectionMode(QAbstractItemView::SingleSelection); // only SINGLE items per selection
+    tableView->setDragDropMode(QAbstractItemView::NoDragDrop); // no drag'n'drop event support
+    tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    tableView->verticalHeader()->setVisible(false);
+    tableView->setFocusPolicy(Qt::NoFocus);
+
+    return tableView;
 }
 
 void MainWindow::initDB()

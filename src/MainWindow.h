@@ -22,6 +22,7 @@ private:
     void initDB();
     void showSettingsWindow();
     bool createDBConnection();
+    QTableView* initTableView();
 
 private slots:
     void addButtonClicked();
