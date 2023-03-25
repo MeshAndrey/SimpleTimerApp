@@ -16,6 +16,14 @@ MainWindow::MainWindow(QWidget *parent)
     tableView = new QTableView;
     addButton = new QPushButton("+");
 
+    tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); // no editing in table
+    tableView->setSelectionBehavior(QAbstractItemView::SelectItems); // selecting ONLY items
+    tableView->setSelectionMode(QAbstractItemView::SingleSelection); // only SINGLE items per selection
+    tableView->setDragDropMode(QAbstractItemView::NoDragDrop); // no drag'n'drop event support
+    tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    tableView->verticalHeader()->setVisible(false);
+    tableView->setFocusPolicy(Qt::NoFocus);
+
     leftLayout->addWidget(tableView);
 
     rightLayout->addWidget(new InputWidget(), 0, Qt::AlignCenter | Qt::AlignTop);
