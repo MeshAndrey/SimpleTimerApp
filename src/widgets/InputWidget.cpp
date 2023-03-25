@@ -135,7 +135,11 @@ void InputWidget::okButtonClicked()
     if (timerValue == 0)
         return;
 
-    auto mainWindow = qobject_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
+    auto mainWindow = qobject_cast<MainWindow*>(this->parent()->parent()->parent()->parent()->parent());
+    if (mainWindow == nullptr)
+    {
+        return;
+    }
 
     mainWindow->replaceWidget(this,
                               new TimerWidget(nameEdit->text(),

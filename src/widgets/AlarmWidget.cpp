@@ -1,7 +1,7 @@
 #include "AlarmWidget.h"
 #include "InputWidget.h"
 #include "TimerWidget.h"
-#include "../MainWindow.h"
+
 #include "../TimeUtils.h"
 
 AlarmWidget::AlarmWidget(QString name, int timerValue, QWidget *parent) : QWidget(parent)
@@ -65,7 +65,12 @@ void AlarmWidget::stopButtonClicked()
 {
     alarmSound->stop();
 
-    auto mainWindow = qobject_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
+    auto mainWindow = getMainWindow();
+    if (mainWindow == nullptr)
+    {
+        return;
+    }
+
     mainWindow->replaceWidget(this, new InputWidget(qobject_cast<QWidget*>(this->parent())));
 }
 
@@ -73,7 +78,11 @@ void AlarmWidget::repeatButtonClicked()
 {
     alarmSound->stop();
 
-    auto mainWindow = qobject_cast<MainWindow*>(this->parent()->parent()->parent()->parent());
+    auto mainWindow = getMainWindow();
+    if (mainWindow == nullptr)
+    {
+        return;
+    }
     mainWindow->replaceWidget(this,
                               new TimerWidget(this->name,
                                               this->timerValue,
@@ -87,3 +96,9 @@ void AlarmWidget::updateTimerTimeout()
     timeLabel->setText(TimeUtils::convertToReadable(
                        TimeUtils::round(elapsedTimer.elapsed())).prepend("-- "));
 }
+
+MainWindow* AlarmWidget::getMainWindow()
+{
+    return qobject_cast<MainWindow*>(this->parent()->parent()->parent()->parent()->parent());
+}
+

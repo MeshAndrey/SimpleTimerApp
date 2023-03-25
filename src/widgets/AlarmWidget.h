@@ -6,6 +6,8 @@
 #include <QSound>
 #include <QtWidgets>
 
+#include "../MainWindow.h"
+
 class AlarmWidget : public QWidget
 {
     Q_OBJECT
@@ -24,6 +26,7 @@ private:
     void initWidgets();
     void initLayout();
     void initConnections();
+    MainWindow* getMainWindow();
 
 public:
     explicit AlarmWidget(QString name, int timerValue, QWidget *parent = nullptr);
