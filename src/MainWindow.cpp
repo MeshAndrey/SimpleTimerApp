@@ -50,7 +50,7 @@ QTableView* MainWindow::initTableView()
     QTableView* tableView = new QTableView;
 
     tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); // no editing in table
-    tableView->setSelectionBehavior(QAbstractItemView::SelectItems); // selecting ONLY items
+    tableView->setSelectionBehavior(QAbstractItemView::SelectRows); // selecting ONLY rows
     tableView->setSelectionMode(QAbstractItemView::SingleSelection); // only SINGLE items per selection
     tableView->setDragDropMode(QAbstractItemView::NoDragDrop); // no drag'n'drop event support
     tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -67,7 +67,7 @@ void MainWindow::initDB()
         qApp->closeAllWindows();
     }
 
-    model.setQuery("SELECT name "
+    model.setQuery("SELECT name, timerTime, shellcmd "
                    "FROM timers "
                    "ORDER BY date DESC, time DESC;"
                   );
@@ -255,14 +255,15 @@ bool MainWindow::createDBConnection()
         return true;
     }
 
-    QString   str  = "CREATE TABLE timers ( "
-                         "date TEXT, "
-                         "time TEXT, "
-                         "name TEXT, "
-                         "hours INTEGER NOT NULL, "
-                         "minutes INTEGER NOT NULL, "
-                         "seconds INTEGER NOT NULL, "
-                         "shellcmd TEXT"
+    QString   str  = "CREATE TABLE timers ("
+                        "date	TEXT NOT NULL,"
+                        "time	TEXT NOT NULL,"
+                        "name	TEXT,"
+                        "hours	INTEGER NOT NULL,"
+                        "minutes	INTEGER NOT NULL,"
+                        "seconds	INTEGER NOT NULL,"
+                        "timerTime	TEXT NOT NULL,"
+                        "shellcmd	TEXT"
                      ");";
 
     QSqlQuery query = db.exec(str);
