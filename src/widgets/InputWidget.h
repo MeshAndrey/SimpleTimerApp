@@ -24,6 +24,7 @@ private:
     void initLayout();
     void initConnections();
     void showMessageBox(QString message);
+    void insertToDB(QString name, QString h, QString m, QString s, QString timerTime, QString shellcmd);
     int getTimerValue();
     int parseLineEdit(QLineEdit* edit, bool &ok);
 

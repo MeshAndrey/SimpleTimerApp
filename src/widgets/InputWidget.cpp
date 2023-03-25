@@ -1,5 +1,6 @@
 #include "InputWidget.h"
 #include "../MainWindow.h"
+#include "../TimeUtils.h"
 #include "TimerWidget.h"
 
 InputWidget::InputWidget(QWidget *parent) : QWidget(parent)
@@ -141,12 +142,29 @@ void InputWidget::okButtonClicked()
         return;
     }
 
+    insertToDB(nameEdit->text(), hoursEdit->text(), minsEdit->text(), secsEdit->text(),
+               TimeUtils::convertToReadable(timerValue), shellCommandEdit->text());
     mainWindow->replaceWidget(this,
                               new TimerWidget(nameEdit->text(),
                                               timerValue,
                                               shellCommandEdit->text(),
                                               autoStopAlarmCheckBox->isChecked(),
                                               qobject_cast<QWidget*>(this->parent())));
+}
+
+void InputWidget::insertToDB(QString name, QString h, QString m, QString s, QString timerTime, QString shellcmd)
+{
+    QString formatStr = "INSERT INTO timers (date, time, name, hours, minutes, seconds, timerTime, shellcmd) "
+                        "VALUES(date('now', 'localtime'), time('now', 'localtime'), '%1', '%2', '%3', '%4', '%5', '%6');";
+
+    QString str = formatStr.arg(name, h, m, s, timerTime, shellcmd);
+    QSqlQuery query;
+
+    if (!query.exec(str))
+    {
+        qDebug() << "Unable to execute query - exiting";
+        return;
+    }
 }
 
 void InputWidget::deleteButtonClicked()
